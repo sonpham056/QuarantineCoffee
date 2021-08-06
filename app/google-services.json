@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "406171137131",
+    "firebase_url": "https://coffeeshopmanagement-94335-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "coffeeshopmanagement-94335",
+    "storage_bucket": "coffeeshopmanagement-94335.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406171137131:android:fe66b4bdbdd04352d12d2e",
+        "android_client_info": {
+          "package_name": "com.microwaveteam.quarantinecoffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406171137131-qnbg0pk1ousal730hj9i3kgeej7r5qrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWvLjJw0qJ6qltdvKqZSZko6wryYWVZ2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406171137131-qnbg0pk1ousal730hj9i3kgeej7r5qrm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
