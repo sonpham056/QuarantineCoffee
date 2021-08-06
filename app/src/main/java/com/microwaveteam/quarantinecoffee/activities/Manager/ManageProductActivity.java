@@ -7,18 +7,17 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.microwaveteam.quarantinecoffee.R;
+public class ManageProductActivity extends AppCompatActivity {
 
-public class ManagerActivity extends AppCompatActivity {
-
-    Button btnManageProduct;
+    Button btnPromotion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
-        btnManageProduct = findViewById(R.id.btnManageProduct);
+        setContentView(R.layout.activity_manage_product);
+        btnPromotion = findViewById(R.id.btnPromotion);
 
-        btnManageProduct.setOnClickListener(view -> {
-            Intent intent = new Intent(ManagerActivity.this, ManageProductActivity.class);
+        btnPromotion.setOnClickListener(view -> {
+            Intent intent = new Intent(ManageProductActivity.this, PromotionActivity.class);
             startActivity(intent);
         });
     }
