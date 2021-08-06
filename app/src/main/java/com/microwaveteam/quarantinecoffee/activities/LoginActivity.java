@@ -1,11 +1,10 @@
-package com.microwaveteam.quarantinecoffee;
+package com.microwaveteam.quarantinecoffee.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +16,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.microwaveteam.quarantinecoffee.R;
+import com.microwaveteam.quarantinecoffee.activities.Bartender.BartenderActivity;
+import com.microwaveteam.quarantinecoffee.activities.Manager.ManagerActivity;
+import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin;
     EditText txtUserName, txtPwd;
@@ -46,22 +49,22 @@ public class Login extends AppCompatActivity {
 
                             String RoleDb = snapshot.child(usernameEntered).child("role").getValue(String.class);
                             Intent intent;
-                            Toast.makeText(Login.this,
+                            Toast.makeText(LoginActivity.this,
                                     "Logged by: "+ snapshot.child(usernameEntered).child("FullName").getValue(String.class),
                                     Toast.LENGTH_LONG).show();
 
                             if(RoleDb.equals("1")){
-                                intent = new Intent(Login.this,Waiter.class);
+                                intent = new Intent(LoginActivity.this, WaiterActivity.class);
                                 startActivity(intent);
                                 //TODO: put some extra
 
                             }else if(RoleDb.equals("2")){
-                                intent = new Intent(Login.this,Bartender.class);
+                                intent = new Intent(LoginActivity.this, BartenderActivity.class);
                                 startActivity(intent);
 
                                 //TODO: put some extra
                             }else if(RoleDb.equals("0")){
-                                intent = new Intent(Login.this,Manager.class);
+                                intent = new Intent(LoginActivity.this, ManagerActivity.class);
                                 startActivity(intent);
                                 //TODO: put some extra
                             }else{

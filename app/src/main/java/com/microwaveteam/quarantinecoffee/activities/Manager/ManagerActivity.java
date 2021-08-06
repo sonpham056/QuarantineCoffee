@@ -1,10 +1,12 @@
-package com.microwaveteam.quarantinecoffee;
+package com.microwaveteam.quarantinecoffee.activities.Manager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Manager extends AppCompatActivity {
+import com.microwaveteam.quarantinecoffee.R;
+
+public class ManagerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,10 +1,12 @@
-package com.microwaveteam.quarantinecoffee;
+package com.microwaveteam.quarantinecoffee.activities.Bartender;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Bartender extends AppCompatActivity {
+import com.microwaveteam.quarantinecoffee.R;
+
+public class BartenderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

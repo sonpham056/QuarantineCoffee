@@ -1,18 +1,13 @@
-package com.microwaveteam.quarantinecoffee;
+package com.microwaveteam.quarantinecoffee.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.microwaveteam.quarantinecoffee.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(MainActivity.this, Login.class);
+                Intent it = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(it);
                 //TODO:Put some extra
             }

@@ -1,4 +1,4 @@
-package com.microwaveteam.quarantinecoffee;
+package com.microwaveteam.quarantinecoffee.models;
 
 public class User {
     public String UserName;
