@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
         <activity
+            android:name=".activities.Manager.PromotionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.Manager.ManageProductActivity"
+            android:exported="true"
+            android:label="@string/title_activity_manage_product"
+            android:theme="@style/Theme.QuarantineCoffee.NoActionBar" />
+        <activity
             android:name=".activities.Manager.ManagerActivity"
             android:exported="true" />
         <activity

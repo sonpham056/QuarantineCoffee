@@ -4,34 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Manager.ManagerActivity"
+    tools:context=".activities.Manager.ManageProductActivity"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnManageProduct"
-        android:layout_width="310dp"
+        android:id="@+id/btnProduct"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Manage Product"
+        android:text="Product"
         android:textSize="25sp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:layout_marginLeft="60dp">
     </Button>
 
     <Button
-        android:id="@+id/btnManageEmployee"
-        android:layout_width="310dp"
+        android:id="@+id/btnPromotion"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Manage Employee"
-        android:textSize="25sp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="60dp">
-    </Button>
-
-    <Button
-        android:id="@+id/btnStatistical"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:text="Statistical"
+        android:text="Promotion"
         android:textSize="25sp"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="60dp">
