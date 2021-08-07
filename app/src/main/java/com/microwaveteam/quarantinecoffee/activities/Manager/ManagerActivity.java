@@ -11,14 +11,21 @@ import com.microwaveteam.quarantinecoffee.R;
 public class ManagerActivity extends AppCompatActivity {
 
     Button btnManageProduct;
+    Button btnManageEmployee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
         btnManageProduct = findViewById(R.id.btnManageProduct);
+        btnManageEmployee = findViewById(R.id.btnManageEmployee);
 
         btnManageProduct.setOnClickListener(view -> {
             Intent intent = new Intent(ManagerActivity.this, ManageProductActivity.class);
+            startActivity(intent);
+        });
+
+        btnManageEmployee.setOnClickListener(view -> {
+            Intent intent = new Intent(ManagerActivity.this, ManageEmployeeActivity.class);
             startActivity(intent);
         });
     }
