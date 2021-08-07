@@ -2,6 +2,7 @@ package com.microwaveteam.quarantinecoffee.activities.Manager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -13,6 +14,12 @@ public class ManageEmployeeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_employee);
+        setContentView(R.layout.mn_activity_manage_employee);
+
+        btnCUDEmployee = findViewById(R.id.btnCUDEmployee);
+        btnCUDEmployee.setOnClickListener(view -> {
+            Intent intent = new Intent(ManageEmployeeActivity.this, CUDActivity.class);
+            startActivity(intent);
+        });
     }
 }
