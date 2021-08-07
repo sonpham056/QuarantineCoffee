@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                                         intent.putExtra("UserNameLogged",usernameEntered);
                                         intent.putExtra("Role",1);
                                         startActivity(intent);
-                                        
+
                                     }else if(RoleDb.equals("2")){
                                         intent = new Intent(LoginActivity.this, BartenderActivity.class);
                                         intent.putExtra("UserNameLogged",usernameEntered);
@@ -88,14 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                                     }else{
 
                                     }
-
-
                                     writeLog(usernameEntered);
                                 }else{
                                     txtPwd.setError("Wrong Pass");
                                     txtPwd.requestFocus();
                                 }
-
 
                             }else{
                                 txtUserName.setError("Not exist??");
@@ -110,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void writeLog(String userName) {
 
@@ -131,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
     private void mapping() {
         btnLogin = findViewById(R.id.btnLogin);
         txtPwd = findViewById(R.id.txtPass);
-        txtUserName = findViewById(R.id.txtUserName);
+        txtUserName = findViewById(R.id.txt_mn_username_create);
     }
     private Boolean validate() {
         String pass = txtPwd.getText().toString();

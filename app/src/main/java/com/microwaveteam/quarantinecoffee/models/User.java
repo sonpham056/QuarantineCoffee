@@ -1,6 +1,7 @@
 package com.microwaveteam.quarantinecoffee.models;
 
 public class User {
+
     private String UserName;
     private String Password;
     private String FullName;
@@ -8,9 +9,11 @@ public class User {
     private String role;
     private String isMale;
 
+
     public User(){
         //default
     }
+
 
     public String getDateOfBird() {
         return DateOfBird;
@@ -46,6 +49,7 @@ public class User {
 
     public void setFullName(String fullName) {
         FullName = fullName;
+
     }
 
     public String getRole() {
