@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
 //        map.put("1","Waiter");
 //        map.put("2","Bartender");
 //        myRef.setValue(map);
-
-
-
 
         btnGo = findViewById(R.id.btnGo);
         btnGo.setOnClickListener(new View.OnClickListener() {
