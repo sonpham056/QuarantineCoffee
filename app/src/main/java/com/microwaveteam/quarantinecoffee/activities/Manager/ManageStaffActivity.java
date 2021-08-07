@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
@@ -41,7 +40,7 @@ public class ManageStaffActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_staff);
+        setContentView(R.layout.mn_activity_manage_staff);
         ArrayList list = new ArrayList<>();
         users = new ArrayList<>();
 
