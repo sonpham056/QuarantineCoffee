@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".10"
+            android:layout_weight=".08"
             android:orientation="horizontal">
 
             <TextView
@@ -44,7 +44,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".10"
+            android:layout_weight=".08"
             android:orientation="horizontal">
 
             <TextView
@@ -71,7 +71,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".10"
+            android:layout_weight=".08"
             android:orientation="horizontal">
 
             <TextView
@@ -98,7 +98,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".10"
+            android:layout_weight=".08"
             android:orientation="horizontal">
 
             <TextView
@@ -125,7 +125,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".10"
+            android:layout_weight=".08"
             android:orientation="horizontal">
 
             <TextView
@@ -148,7 +148,53 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".08"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:text="Date of birth"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/txt_mn_dob_create"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textSize="20sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".05"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/ckb_mn_check_create"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:layout_gravity="center_vertical"
+                android:textSize="30sp"
+                android:background="#D9FF00"
+                android:text="Gender? Is that male?" />
+
+        </LinearLayout>
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"

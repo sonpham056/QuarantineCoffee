@@ -1,43 +1,55 @@
 package com.microwaveteam.quarantinecoffee.models;
 
 public class User {
-    private String userName;
-    private String password;
-    private String fullName;
+
+    private String UserName;
+    private String Password;
+    private String FullName;
+    private String DateOfBird;
     private String role;
+    private String isMale;
+
 
     public User(){
         //default
     }
-    public User(String userName, String password, String fullName, String role) {
-        this.userName = userName;
-        this.password = password;
-        this.fullName = fullName;
-        this.role = role;
+
+
+    public String getDateOfBird() {
+        return DateOfBird;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setDateOfBird(String dateOfBird) {
+        DateOfBird = dateOfBird;
+    }
+
+    public String getIsMale() {
+        return isMale;
+    }
+
+    public void setIsMale(String isMale) {
+        this.isMale = isMale;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        UserName = userName;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
     }
 
     public String getFullName() {
-        return fullName;
+        return FullName;
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        FullName = fullName;
+
     }
 
     public String getRole() {
@@ -47,4 +59,19 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public User(String userName, String password, String fullName, String DOB, String _role, String ismale) {
+        UserName = userName;
+        Password = password;
+        FullName = fullName;
+        DateOfBird = DOB;
+        role = _role;
+        isMale = ismale;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+
 }

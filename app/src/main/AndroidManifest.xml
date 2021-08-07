@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
         <activity
+
+            android:name=".activities.Manager.ShowList"
+            android:exported="true" />
+        <activity
+            android:name=".activities.Manager.ManageStaffActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.Manager.CreateEmployeeActivity"
             android:exported="true" />
         <activity

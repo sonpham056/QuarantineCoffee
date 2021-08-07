@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,14 +22,14 @@ public class CreateEmployeeActivity extends AppCompatActivity {
     EditText txtConfirmPassword;
     EditText txtRole;
     EditText txtFullName;
-    Button btnConfirm;
-    Button btnBack;
+    EditText txtDob;
+    Button btnConfirm, btnBack;
+    CheckBox ckbGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mn_activity_create_employee);
-
         bind();
     }
 
@@ -39,8 +40,12 @@ public class CreateEmployeeActivity extends AppCompatActivity {
             txtConfirmPassword = findViewById(R.id.txt_mn_confirmpass_create);
             txtRole = findViewById(R.id.txt_mn_role_create);
             txtFullName = findViewById(R.id.txt_mn_fullname_create);
+            txtDob = findViewById(R.id.txt_mn_dob_create);
+
             btnConfirm = findViewById(R.id.btn_mn_confirm_create);
             btnBack = findViewById(R.id.btn_mn_back_create);
+            ckbGender = findViewById(R.id.ckb_mn_check_create);
+
 
             btnConfirm.setOnClickListener(view -> {
                 btnConfirmClicked();
@@ -60,7 +65,17 @@ public class CreateEmployeeActivity extends AppCompatActivity {
         try {
             checkValid();
             checkRole();
-            User user = new User(txtUserName.getText().toString(), txtPassword.getText().toString(), txtFullName.getText().toString(), txtRole.getText().toString());
+            String gender = "";
+            if(ckbGender.isChecked()){
+                gender = "Yes";
+            }
+            gender = "No";
+
+            User user = new User(txtUserName.getText().toString()
+                    ,txtPassword.getText().toString()
+                    ,txtFullName.getText().toString()
+                    ,txtDob.getText().toString(),txtRole.getText().toString(),gender);
+
             UserDAO.addUser(user, this);
             onBackPressed();
         } catch (Exception e){

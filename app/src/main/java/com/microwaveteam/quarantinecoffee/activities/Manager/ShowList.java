@@ -1,16 +1,16 @@
 package com.microwaveteam.quarantinecoffee.activities.Manager;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 
 import com.microwaveteam.quarantinecoffee.R;
 
-public class PromotionActivity extends AppCompatActivity {
+public class ShowList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_promotion);
+        setContentView(R.layout.activity_show_list);
     }
 }
