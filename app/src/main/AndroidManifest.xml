@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
         <activity
-
+            android:name=".activities.Manager.UpdateEmployeeActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.Manager.ShowList"
             android:exported="true" />
         <activity
@@ -21,9 +23,6 @@
             android:exported="true" />
         <activity
             android:name=".activities.Manager.CUDEmployeeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activities.Manager.ManageEmployeeActivity"
             android:exported="true" />
         <activity
             android:name=".activities.Manager.PromotionActivity"

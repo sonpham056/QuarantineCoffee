@@ -2,13 +2,13 @@ package com.microwaveteam.quarantinecoffee.Helper;
 
 public class FeatureHelper {
     int image, image1, image2;
-    String  username;
+    String  userName;
 
     public FeatureHelper(int image, int image1, int image2, String username) {
         this.image = image;
         this.image1 = image1;
         this.image2 = image2;
-        this.username = username;
+        this.userName = username;
     }
 
     public int getImage() {
@@ -35,11 +35,11 @@ public class FeatureHelper {
         this.image2 = image2;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String username) {
+        this.userName = username;
     }
 }
