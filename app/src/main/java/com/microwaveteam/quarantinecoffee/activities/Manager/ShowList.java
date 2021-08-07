@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.microwaveteam.quarantinecoffee.R;
 
-public class CreateOrUpdateActivity extends AppCompatActivity {
+public class ShowList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mn_activity_create_or_update);
+        setContentView(R.layout.activity_show_list);
     }
 }
