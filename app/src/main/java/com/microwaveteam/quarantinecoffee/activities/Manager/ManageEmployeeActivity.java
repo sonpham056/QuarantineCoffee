@@ -18,7 +18,7 @@ public class ManageEmployeeActivity extends AppCompatActivity {
 
         btnCUDEmployee = findViewById(R.id.btnCUDEmployee);
         btnCUDEmployee.setOnClickListener(view -> {
-            Intent intent = new Intent(ManageEmployeeActivity.this, CUDActivity.class);
+            Intent intent = new Intent(ManageEmployeeActivity.this, CUDEmployeeActivity.class);
             startActivity(intent);
         });
     }

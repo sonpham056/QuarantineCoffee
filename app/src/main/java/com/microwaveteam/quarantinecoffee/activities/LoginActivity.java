@@ -38,19 +38,19 @@ public class LoginActivity extends AppCompatActivity {
 
                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Account");
 
-                Query checkUser = myRef.orderByChild("UserName").equalTo(usernameEntered);
+                Query checkUser = myRef.orderByChild("userName").equalTo(usernameEntered);
 
                 checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        String PassDb = snapshot.child(usernameEntered).child("Password").getValue(String.class);
+                        String PassDb = snapshot.child(usernameEntered).child("password").getValue(String.class);
                         if(PassDb.equals(passwordEntered)){
 
                             String RoleDb = snapshot.child(usernameEntered).child("role").getValue(String.class);
                             Intent intent;
                             Toast.makeText(LoginActivity.this,
-                                    "Logged by: "+ snapshot.child(usernameEntered).child("FullName").getValue(String.class),
+                                    "Logged by: "+ snapshot.child(usernameEntered).child("fullName").getValue(String.class),
                                     Toast.LENGTH_LONG).show();
 
                             if(RoleDb.equals("1")){
@@ -85,6 +85,6 @@ public class LoginActivity extends AppCompatActivity {
     private void mapping() {
         btnLogin = findViewById(R.id.btnLogin);
         txtPwd = findViewById(R.id.txtPass);
-        txtUserName = findViewById(R.id.txtUserName);
+        txtUserName = findViewById(R.id.txt_mn_username_create);
     }
 }
