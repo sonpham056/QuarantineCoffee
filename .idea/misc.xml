@@ -5,7 +5,12 @@
       <map>
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_login.xml" value="0.14" />
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_manage_product.xml" value="0.20416666666666666" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_manage_staff.xml" value="0.1" />
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_manager.xml" value="0.20416666666666666" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_employee.xml" value="0.18" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_product.xml" value="0.19202898550724637" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_manager.xml" value="0.17708333333333334" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_promotion.xml" value="0.25" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_bartender.xml" value="0.1793478260869565" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_employee_main.xml" value="0.1734375" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_login.xml" value="0.144" />
@@ -31,7 +36,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="16" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

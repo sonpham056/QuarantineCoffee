@@ -13,12 +13,19 @@ public class ManageProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_product);
-        btnPromotion = findViewById(R.id.btnPromotion);
+        setContentView(R.layout.mn_activity_manage_product);
+        bind();
+        clicking();
+    }
 
+    private void clicking() {
         btnPromotion.setOnClickListener(view -> {
             Intent intent = new Intent(ManageProductActivity.this, PromotionActivity.class);
             startActivity(intent);
         });
+    }
+
+    private  void bind(){
+        btnPromotion = findViewById(R.id.btnPromotion);
     }
 }

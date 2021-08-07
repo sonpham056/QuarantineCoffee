@@ -1,13 +1,15 @@
 package com.microwaveteam.quarantinecoffee.activities.Manager;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +40,7 @@ public class ManageStaffActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_staff);
+        setContentView(R.layout.mn_activity_manage_staff);
         ArrayList list = new ArrayList<>();
         users = new ArrayList<>();
 
@@ -93,9 +95,4 @@ public class ManageStaffActivity extends AppCompatActivity {
         });
     }
 
-    public void startUpdateActivity(String userName) {
-        Intent intent = new Intent(context, UpdateEmployeeActivity.class);
-        intent.putExtra("userName", userName);
-        startActivity(intent);
-    }
 }

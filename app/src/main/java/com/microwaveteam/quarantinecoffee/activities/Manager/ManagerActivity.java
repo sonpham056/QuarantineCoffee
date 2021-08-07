@@ -2,7 +2,6 @@ package com.microwaveteam.quarantinecoffee.activities.Manager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +14,10 @@ public class ManagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
-        mapping();
+        setContentView(R.layout.mn_activity_manager);
+
+        bind();
+
         clicking();
 
     }
@@ -33,7 +34,7 @@ public class ManagerActivity extends AppCompatActivity {
         });
     }
 
-    private void mapping() {
+    private void bind(){
         btnManageProduct = findViewById(R.id.btnManageProduct);
         btnManageStaff = findViewById(R.id.btnManageEmployee);
     }
