@@ -23,9 +23,7 @@ import com.microwaveteam.quarantinecoffee.activities.Manager.ManagerActivity;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 import com.microwaveteam.quarantinecoffee.models.LoginHistory;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -129,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
     private void mapping() {
         btnLogin = findViewById(R.id.btnLogin);
         txtPwd = findViewById(R.id.txtPass);
-        txtUserName = findViewById(R.id.txt_mn_username_create);
+        txtUserName = findViewById(R.id.txt_mn_username_update);
     }
     private Boolean validate() {
         String pass = txtPwd.getText().toString();

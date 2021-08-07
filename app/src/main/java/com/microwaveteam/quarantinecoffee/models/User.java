@@ -2,25 +2,15 @@ package com.microwaveteam.quarantinecoffee.models;
 
 public class User {
 
-    private String UserName;
-    private String Password;
-    private String FullName;
-    private String DateOfBird;
+    private String userName;
+    private String password;
+    private String fullName;
     private String role;
     private String isMale;
 
 
     public User(){
         //default
-    }
-
-
-    public String getDateOfBird() {
-        return DateOfBird;
-    }
-
-    public void setDateOfBird(String dateOfBird) {
-        DateOfBird = dateOfBird;
     }
 
     public String getIsMale() {
@@ -32,24 +22,27 @@ public class User {
     }
 
     public void setUserName(String userName) {
-        UserName = userName;
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getFullName() {
-        return FullName;
+        return fullName;
     }
 
     public void setFullName(String fullName) {
-        FullName = fullName;
-
+        this.fullName = fullName;
     }
 
     public String getRole() {
@@ -60,18 +53,22 @@ public class User {
         this.role = role;
     }
 
-    public User(String userName, String password, String fullName, String DOB, String _role, String ismale) {
-        UserName = userName;
-        Password = password;
-        FullName = fullName;
-        DateOfBird = DOB;
-        role = _role;
+    public User(String userName, String password, String fullName, String role, String isMale) {
+        this.userName = userName;
+        this.password = password;
+        this.fullName = fullName;
+        this.role = role;
+        this.isMale = isMale;
+    }
+
+    public User(String userName, String fullName, String role, String ismale) {
+        this.userName = userName;
+        this.fullName = fullName;
+        this.role = role;
         isMale = ismale;
     }
 
-    public String getUserName() {
-        return UserName;
-    }
+
 
 
 }

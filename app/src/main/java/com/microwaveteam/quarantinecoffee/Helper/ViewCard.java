@@ -1,5 +1,8 @@
 package com.microwaveteam.quarantinecoffee.Helper;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,34 +16,38 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.microwaveteam.quarantinecoffee.R;
+import com.microwaveteam.quarantinecoffee.activities.Manager.ManageStaffActivity;
+import com.microwaveteam.quarantinecoffee.activities.Manager.UpdateEmployeeActivity;
 
 import java.util.ArrayList;
 
-public class ViewCard extends RecyclerView.Adapter<ViewCard.FeaturedViewHoder> {
+public class ViewCard extends RecyclerView.Adapter<ViewCard.FeaturedViewHolder> {
 
     ArrayList<FeatureHelper> featuredLocations;
     DatabaseReference databaseReference;
-    public ViewCard(ArrayList<FeatureHelper> featuredLocations) {
+    ManageStaffActivity activity;
+    public ViewCard(ArrayList<FeatureHelper> featuredLocations, ManageStaffActivity activity) {
         this.featuredLocations = featuredLocations;
+        this.activity = activity;
     }
 
     @NonNull
     @Override
-    public FeaturedViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FeaturedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_show_list,parent,false);
-        FeaturedViewHoder featuredViewHoder = new FeaturedViewHoder(view);
-        return featuredViewHoder;
+        FeaturedViewHolder featuredViewHolder = new FeaturedViewHolder(view);
+        return featuredViewHolder;
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull FeaturedViewHoder holder, int position) {
+    public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
 
         FeatureHelper featuredHelpersClass = featuredLocations.get(position);
 
         holder.image.setImageResource(featuredHelpersClass.getImage());
-        holder.text.setText(featuredHelpersClass.getUsername());
-        holder.title.setImageResource(featuredHelpersClass.getImage1());
+        holder.text.setText(featuredHelpersClass.getUserName());
+        holder.btnEdit.setImageResource(featuredHelpersClass.getImage1());
         holder.btnDelete.setImageResource(featuredHelpersClass.getImage2());
     }
 
@@ -49,43 +56,59 @@ public class ViewCard extends RecyclerView.Adapter<ViewCard.FeaturedViewHoder> {
         return featuredLocations.size();
     }
 
-    public class FeaturedViewHoder extends RecyclerView.ViewHolder{
+    public class FeaturedViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView image, title, btnDelete;
+        ImageView image, btnEdit, btnDelete;
         TextView text;
 
 
-        public FeaturedViewHoder(@NonNull View itemView) {
+        public FeaturedViewHolder(@NonNull View itemView) {
             super(itemView);
             databaseReference = FirebaseDatabase.getInstance().getReference("Account");
             image = itemView.findViewById(R.id.img_mn_showAvatar);
-            title = itemView.findViewById(R.id.btn_mn_editAccount);
+            btnEdit = itemView.findViewById(R.id.btn_mn_editAccount);
             btnDelete = itemView.findViewById(R.id.btn_mn_deleteAccount);
             text =  itemView.findViewById(R.id.txtProfileUsername);
             itemView.bringToFront();
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int itemPosition = getAdapterPosition();
-                    FeatureHelper item = featuredLocations.get(itemPosition);
-                    //Toast.makeText(v.getContext(),"The Item Clicked is: "+item.getUsername(),Toast.LENGTH_SHORT).show();
-
-                    databaseReference.child(item.getUsername()).removeValue();
-                    Toast.makeText(v.getContext(), "Successfully deleted user: "+item.getUsername(), Toast.LENGTH_SHORT).show();
-
-                    //v.getContext().startActivity(get);
-                    //final Intent intent;
-                    //intent =  new Intent(v.getContext(), History.class);
-                    //v.getContext().startActivity(intent);
+                    btnDeleteClick(v);
                 }
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
+
+            btnEdit.setOnClickListener(view -> {
+                int itemPosition = getAdapterPosition();
+                FeatureHelper item = featuredLocations.get(itemPosition);
+
+                Intent intent = new Intent(activity, UpdateEmployeeActivity.class);
+                intent.putExtra("userName",item.getUserName());
+                activity.startActivity(intent);
+            });
+        }
+
+        private void btnDeleteClick(View v) {
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            int itemPosition = getAdapterPosition();
+                            FeatureHelper item = featuredLocations.get(itemPosition);
 
+                            databaseReference.child(item.getUserName()).removeValue();
+                            Toast.makeText(v.getContext(), "Successfully deleted user: " + item.getUserName(), Toast.LENGTH_SHORT).show();
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            break;
+                    }
                 }
-            });
+            };
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                    .setNegativeButton("No", dialogClickListener).show();
         }
     }
 }

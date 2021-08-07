@@ -7,6 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,19 +31,24 @@ public class ManageStaffActivity extends AppCompatActivity {
     RecyclerView featureRecycler;
     DatabaseReference myRef;
     List<User> users;
+    Button btnCreate;
+
+    static Context context;
 
     ViewCard adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_staff);
         ArrayList list = new ArrayList<>();
         users = new ArrayList<>();
 
+        btnCreate = findViewById(R.id.btn_mn_createuser_mnstaff);
         featureRecycler = findViewById(R.id.recycle_mn_list_staff);
         myRef = FirebaseDatabase.getInstance().getReference("Account");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -69,7 +80,7 @@ public class ManageStaffActivity extends AppCompatActivity {
 
 
                 }
-                adapter = new ViewCard(listFeartures);
+                adapter = new ViewCard(listFeartures, ManageStaffActivity.this);
                 featureRecycler.setAdapter(adapter);
             }
 
@@ -78,5 +89,11 @@ public class ManageStaffActivity extends AppCompatActivity {
 
             }
         });
+
+        btnCreate.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CreateEmployeeActivity.class);
+            startActivity(intent);
+        });
     }
+
 }
