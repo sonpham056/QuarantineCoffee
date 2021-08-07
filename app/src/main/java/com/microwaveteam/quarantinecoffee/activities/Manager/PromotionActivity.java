@@ -13,4 +13,6 @@ public class PromotionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mn_activity_promotion);
     }
+
+
 }

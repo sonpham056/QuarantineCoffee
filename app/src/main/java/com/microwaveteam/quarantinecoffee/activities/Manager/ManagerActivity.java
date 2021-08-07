@@ -16,8 +16,8 @@ public class ManagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mn_activity_manager);
-        btnManageProduct = findViewById(R.id.btnManageProduct);
-        btnManageEmployee = findViewById(R.id.btnManageEmployee);
+
+        bind();
 
         btnManageProduct.setOnClickListener(view -> {
             Intent intent = new Intent(ManagerActivity.this, ManageProductActivity.class);
@@ -28,5 +28,10 @@ public class ManagerActivity extends AppCompatActivity {
             Intent intent = new Intent(ManagerActivity.this, ManageEmployeeActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void bind(){
+        btnManageProduct = findViewById(R.id.btnManageProduct);
+        btnManageEmployee = findViewById(R.id.btnManageEmployee);
     }
 }
