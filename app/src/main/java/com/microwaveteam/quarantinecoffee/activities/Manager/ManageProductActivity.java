@@ -13,7 +13,7 @@ public class ManageProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_product);
+        setContentView(R.layout.mn_activity_manage_product);
         btnPromotion = findViewById(R.id.btnPromotion);
 
         btnPromotion.setOnClickListener(view -> {
