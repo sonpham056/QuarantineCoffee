@@ -14,7 +14,7 @@ public class ManagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
+        setContentView(R.layout.mn_activity_manager);
         btnManageProduct = findViewById(R.id.btnManageProduct);
 
         btnManageProduct.setOnClickListener(view -> {

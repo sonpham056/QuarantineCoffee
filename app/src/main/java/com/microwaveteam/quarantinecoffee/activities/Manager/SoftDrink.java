@@ -1,16 +1,15 @@
-package com.microwaveteam.quarantinecoffee.activities.Waiter;
+package com.microwaveteam.quarantinecoffee.activities.Manager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
+import android.widget.Button;
 import com.microwaveteam.quarantinecoffee.R;
-
-public class WaiterActivity extends AppCompatActivity {
+public class SoftDrink extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.w_activity_waiter);
+        setContentView(R.layout.mn_activity_product_drink_soft_drink);
     }
 }
