@@ -25,6 +25,10 @@ public class ManageProductActivity extends AppCompatActivity {
             Intent intent = new Intent(ManageProductActivity.this,ProductActivity.class);
             startActivity(intent);
         });
+        clicking();
+    }
+
+    private void clicking() {
         btnPromotion.setOnClickListener(view -> {
             Intent intent = new Intent(ManageProductActivity.this, PromotionActivity.class);
             startActivity(intent);
