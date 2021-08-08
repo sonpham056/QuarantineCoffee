@@ -58,22 +58,25 @@ public class CreateEmployeeActivity extends AppCompatActivity {
 
     private void btnConfirmClicked() {
         try {
-            checkValid();
-            checkRole();
-            String gender = "";
-            if(ckbGender.isChecked()){
-                gender = "Yes";
-            } else {
-                gender = "No";
+            if(!checkValid()){
+                return;
+            }else {
+                checkRole();
+                String gender = "";
+                if (ckbGender.isChecked()) {
+                    gender = "Yes";
+                } else {
+                    gender = "No";
+                }
+
+                User user = new User(txtUserName.getText().toString()
+                        , txtPassword.getText().toString()
+                        , txtFullName.getText().toString()
+                        , txtRole.getText().toString(), gender);
+
+                UserDAO.addUser(user, this);
+                onBackPressed();
             }
-
-            User user = new User(txtUserName.getText().toString()
-                    ,txtPassword.getText().toString()
-                    ,txtFullName.getText().toString()
-                    ,txtRole.getText().toString(),gender);
-
-            UserDAO.addUser(user, this);
-            onBackPressed();
         } catch (Exception e){
             e.printStackTrace();
             MyAlertDialog.alert(e.getMessage(), this);
@@ -88,7 +91,7 @@ public class CreateEmployeeActivity extends AppCompatActivity {
             MyAlertDialog.alert(e.getMessage(), this);
         }
     }
-    private void checkValid() {
+    private boolean checkValid() {
         try {
             if (txtConfirmPassword.getText().toString().isEmpty() ||
                     txtFullName.getText().toString().isEmpty() ||
@@ -96,11 +99,18 @@ public class CreateEmployeeActivity extends AppCompatActivity {
                     txtRole.getText().toString().isEmpty() ||
                     txtUserName.getText().toString().isEmpty()) {
                 throw new Exception("Please provide all the information");
+
+            }
+            if(!txtPassword.getText().toString().equals(txtConfirmPassword.getText().toString())){
+                txtConfirmPassword.setError("Confirm doesn't match??");
+                return false;
             }
         } catch (Exception e) {
             e.printStackTrace();
             MyAlertDialog.alert(e.getMessage(), this);
+            return false;
         }
+        return true;
     }
 
     private void checkRole() throws  Exception{
