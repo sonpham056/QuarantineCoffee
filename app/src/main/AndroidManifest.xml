@@ -22,9 +22,6 @@
             android:name=".activities.Manager.CreateEmployeeActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.Manager.CUDEmployeeActivity"
-            android:exported="true" />
-        <activity
             android:name=".activities.Manager.PromotionActivity"
             android:exported="true" />
         <activity
