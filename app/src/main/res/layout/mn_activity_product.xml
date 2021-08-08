@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Manager.ProductActivity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Manage Product"
+        android:textSize="30sp"
+        android:textAlignment="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text= "Name:"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/txt_mn_ProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:hint="Tên"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_baseline_free_breakfast_24"
+            android:text=" Category :"
+            android:textSize="16sp"
+            android:paddingTop="15dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txt_mn_selection_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#F8FFFFFF" />
+
+
+        <Spinner
+            android:id="@+id/sp_mn_Category"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="#B43F51B5"
+            android:layout_width="200dp"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text= "Amount:"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/txt_mn_ProductAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:hint="Số lượng"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text= "Price:"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/txt_mn_Price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:hint="Giá"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btn_mn_ProductAddEdit"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Add/Edit"
+            android:layout_marginLeft="30dp"/>
+
+
+
+        <Button
+            android:id="@+id/btn_mn_ProductDelete"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Delete"
+            android:layout_marginLeft="30dp"/>
+    </LinearLayout>
+</LinearLayout>
