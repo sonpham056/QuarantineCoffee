@@ -1,35 +1,27 @@
-package com.microwaveteam.quarantinecoffee.activities.Waiter;
+package com.microwaveteam.quarantinecoffee.Helper;
+
+import android.app.Activity;
+import android.content.Context;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.google.android.material.navigation.NavigationView;
-import com.microwaveteam.quarantinecoffee.Helper.NavigationDrawer;
 import com.microwaveteam.quarantinecoffee.R;
-import com.microwaveteam.quarantinecoffee.activities.LoginActivity;
+import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 
-public class WaiterActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationDrawer implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.w_activity_waiter);
 
 
-        
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(WaiterActivity.this,
+    public void draw(Context context){
+        drawerLayout = drawerLayout.findViewById(R.id.drawer_layout);
+        navigationView = navigationView.findViewById(R.id.navigationView);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle((Activity) context,
                 drawerLayout,
                 R.string.open,
                 R.string.close);
@@ -40,17 +32,12 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getCheckedItem();
     }
-
-
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.help_navItem_exit:
-
-                Intent it = new Intent(WaiterActivity.this, LoginActivity.class);
-                startActivity(it);
+                //TODO: excuse me
                 break;
             case R.id.help_navItem_profile:
                 //TODO: excuse me

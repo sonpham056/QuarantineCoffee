@@ -23,7 +23,9 @@ import com.microwaveteam.quarantinecoffee.activities.Manager.ManagerActivity;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 import com.microwaveteam.quarantinecoffee.models.LoginHistory;
 
+
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -87,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     }
                                     writeLog(usernameEntered);
+                                    //ghi(usernameEntered);
                                 }else{
                                     txtPwd.setError("Wrong Pass");
                                     txtPwd.requestFocus();
@@ -106,6 +109,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+//    private void ghi(String usernameEntered) {
+//        Date currentTime = Calendar.getInstance().getTime();
+//        long i = currentTime.getClass();
+//        System.out.println("get time: " + i );
+//
+//        TestDate t = new TestDate(currentTime,usernameEntered);
+//        myRef = FirebaseDatabase.getInstance().getReference("TimeStone");
+//
+//
+//        myRef.child(usernameEntered)
+//                .setValue(t);
+//
+//    }
+
 
     private void writeLog(String userName) {
 
@@ -118,8 +135,6 @@ public class LoginActivity extends AppCompatActivity {
         myRef.child(log.getUserName()).child(new SimpleDateFormat("MM/yyyy", Locale.getDefault()).format(new Date())).setValue(log);
 
 
-        Log.e("usernameEntered",log.getUserName());
-        Log.e("roleDb","usernameEntered");
 
     }
 
