@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".8"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:textSize="20sp"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -83,12 +83,13 @@
                 android:textSize="20sp" />
 
             <EditText
+
                 android:id="@+id/txt_mn_confirmpass_create"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".8"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:textSize="20sp"
                 tools:ignore="SpeakableTextPresentCheck" />
