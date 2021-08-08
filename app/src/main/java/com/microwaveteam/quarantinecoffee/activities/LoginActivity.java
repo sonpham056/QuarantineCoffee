@@ -24,7 +24,9 @@ import com.microwaveteam.quarantinecoffee.activities.Manager.ManagerActivity;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 import com.microwaveteam.quarantinecoffee.models.LoginHistory;
 
+
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -51,6 +53,68 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 btnLoginClicked();
+                if(!validate()){
+                    return;
+                }
+                else{
+                    final String usernameEntered = txtUserName.getText().toString();
+                    final String passwordEntered = txtPwd.getText().toString();
+
+                    myRef = FirebaseDatabase.getInstance().getReference("Account");
+
+                    Query checkUser = myRef.orderByChild("userName").equalTo(usernameEntered);
+
+                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if(snapshot.exists()){
+                                String PassDb = snapshot.child(usernameEntered).child("password").getValue(String.class);
+                                if(PassDb.equals(passwordEntered)){
+
+                                    String RoleDb = snapshot.child(usernameEntered).child("role").getValue(String.class);
+                                    Intent intent;
+                                    Toast.makeText(LoginActivity.this,
+                                            "Logged by: "+ snapshot.child(usernameEntered).child("fullName").getValue(String.class),
+                                            Toast.LENGTH_LONG).show();
+
+                                    if(RoleDb.equals("1")){
+                                        intent = new Intent(LoginActivity.this, WaiterActivity.class);
+                                        intent.putExtra("UserNameLogged",usernameEntered);
+                                        intent.putExtra("Role",1);
+                                        startActivity(intent);
+
+                                    }else if(RoleDb.equals("2")){
+                                        intent = new Intent(LoginActivity.this, BartenderActivity.class);
+                                        intent.putExtra("UserNameLogged",usernameEntered);
+                                        intent.putExtra("Role",2);
+                                        startActivity(intent);
+
+                                    }else if(RoleDb.equals("0")){
+                                        intent = new Intent(LoginActivity.this, ManagerActivity.class);
+                                        startActivity(intent);
+                                        intent.putExtra("UserNameLogged",usernameEntered);
+                                        intent.putExtra("Role",0);
+                                    }else{
+
+                                    }
+                                    writeLog(usernameEntered);
+                                    //ghi(usernameEntered);
+                                }else{
+                                    txtPwd.setError("Wrong Pass");
+                                    txtPwd.requestFocus();
+                                }
+
+                            }else{
+                                txtUserName.setError("Not exist??");
+                                txtUserName.requestFocus();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                }
             }
         });
     }
@@ -118,7 +182,19 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
-
+//    private void ghi(String usernameEntered) {
+//        Date currentTime = Calendar.getInstance().getTime();
+//        long i = currentTime.getClass();
+//        System.out.println("get time: " + i );
+//
+//        TestDate t = new TestDate(currentTime,usernameEntered);
+//        myRef = FirebaseDatabase.getInstance().getReference("TimeStone");
+//
+//
+//        myRef.child(usernameEntered)
+//                .setValue(t);
+//
+//    }
     private void writeLog(String userName) {
 
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
@@ -129,10 +205,8 @@ public class LoginActivity extends AppCompatActivity {
 
         myRef.child(log.getUserName()).child(new SimpleDateFormat("MM/yyyy", Locale.getDefault()).format(new Date())).setValue(log);
 
-
         Log.e("usernameEntered", log.getUserName());
         Log.e("roleDb", "usernameEntered");
-
     }
 
 

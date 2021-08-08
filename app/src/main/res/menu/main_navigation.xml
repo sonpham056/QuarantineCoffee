@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/help_navItem_profile"
+            android:icon="@drawable/avt"
+            android:title="MY PROFILE"/>
+        <item
+            android:id="@+id/help_navItem_timekeeper"
+            android:icon="@drawable/ic_action_timekeeping"
+            android:title="Time Keeper" />
+        <item
+            android:id="@+id/help_navItem_exit"
+            android:icon="@drawable/ic_action_exit"
+            android:title="SIGN OUT" />
+
+    </group>
+</menu>
