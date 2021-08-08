@@ -10,27 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
         <activity
-            android:name=".activities.Manager.Seed"
-            android:exported="true" />
-        <activity
-            android:name=".activities.Manager.Cake"
-            android:exported="true" />
-        <activity
-            android:name=".activities.Manager.SoftDrink"
-            android:exported="true" />
-        <activity
-            android:name=".activities.Manager.MilkTea"
-            android:exported="true" />
-        <activity
-            android:name=".activities.Manager.Coffee"
-            android:exported="true" />
-        <activity
-            android:name=".activities.Manager.FoodActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activities.Manager.DrinkActivity"
-            android:exported="true" />
-        <activity
             android:name=".activities.Manager.ProductActivity"
             android:exported="true" />
         <activity
