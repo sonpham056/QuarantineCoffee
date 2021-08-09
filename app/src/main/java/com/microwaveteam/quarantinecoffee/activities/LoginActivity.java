@@ -47,74 +47,12 @@ public class LoginActivity extends AppCompatActivity {
             txtUserName.setText(setUserString());
             txtPwd.setText(setPassString());
             btnLoginClicked();
-            Log.e("LoginActivity", "entered");
+            //Log.e("LoginActivity", "entered");
         }
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 btnLoginClicked();
-                if(!validate()){
-                    return;
-                }
-                else{
-                    final String usernameEntered = txtUserName.getText().toString();
-                    final String passwordEntered = txtPwd.getText().toString();
-
-                    myRef = FirebaseDatabase.getInstance().getReference("Account");
-
-                    Query checkUser = myRef.orderByChild("userName").equalTo(usernameEntered);
-
-                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            if(snapshot.exists()){
-                                String PassDb = snapshot.child(usernameEntered).child("password").getValue(String.class);
-                                if(PassDb.equals(passwordEntered)){
-
-                                    String RoleDb = snapshot.child(usernameEntered).child("role").getValue(String.class);
-                                    Intent intent;
-                                    Toast.makeText(LoginActivity.this,
-                                            "Logged by: "+ snapshot.child(usernameEntered).child("fullName").getValue(String.class),
-                                            Toast.LENGTH_LONG).show();
-
-                                    if(RoleDb.equals("1")){
-                                        intent = new Intent(LoginActivity.this, WaiterActivity.class);
-                                        intent.putExtra("UserNameLogged",usernameEntered);
-                                        intent.putExtra("Role",1);
-                                        startActivity(intent);
-
-                                    }else if(RoleDb.equals("2")){
-                                        intent = new Intent(LoginActivity.this, BartenderActivity.class);
-                                        intent.putExtra("UserNameLogged",usernameEntered);
-                                        intent.putExtra("Role",2);
-                                        startActivity(intent);
-
-                                    }else if(RoleDb.equals("0")){
-                                        intent = new Intent(LoginActivity.this, ManagerActivity.class);
-                                        startActivity(intent);
-                                        intent.putExtra("UserNameLogged",usernameEntered);
-                                        intent.putExtra("Role",0);
-                                    }else{
-
-                                    }
-                                    writeLog(usernameEntered);
-                                    //ghi(usernameEntered);
-                                }else{
-                                    txtPwd.setError("Wrong Pass");
-                                    txtPwd.requestFocus();
-                                }
-
-                            }else{
-                                txtUserName.setError("Not exist??");
-                                txtUserName.requestFocus();
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
-                }
             }
         });
     }
@@ -246,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
         prefs = getSharedPreferences("My app", MODE_PRIVATE);
         String name = prefs.getString("userName", "nothing Here");
         String pass = prefs.getString("password", "nothing Here");
-        if (name.compareTo("nothing here") != 0 && pass.compareTo("nothing here") != 0) {
+        if (name.compareTo("nothing Here") != 0 && pass.compareTo("nothing Here") != 0) {
             return true;
         }
         return false;
