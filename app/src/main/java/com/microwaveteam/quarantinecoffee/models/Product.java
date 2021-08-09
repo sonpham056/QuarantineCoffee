@@ -5,6 +5,7 @@ public class Product {
     private long price;
     private int amount;
     private String category;
+    private String image;
 
     public Product(String productName, long price, int amount, String category) {
         this.productName = productName;
@@ -46,6 +47,14 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
 
