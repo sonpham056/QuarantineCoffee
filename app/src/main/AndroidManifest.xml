@@ -18,6 +18,9 @@
             </intent-filter>
         </service>
         <activity
+            android:name=".activities.Manager.ProductActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.Manager.UpdateEmployeeActivity"
             android:exported="true" />
         <activity
