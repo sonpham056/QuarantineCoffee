@@ -2,7 +2,6 @@ package com.microwaveteam.quarantinecoffee.Helper;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,20 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.microwaveteam.quarantinecoffee.R;
-import com.microwaveteam.quarantinecoffee.activities.Manager.ManageStaffActivity;
-import com.microwaveteam.quarantinecoffee.activities.Manager.UpdateEmployeeActivity;
+import com.microwaveteam.quarantinecoffee.activities.Manager.PromotionActivity;
 
 import java.util.ArrayList;
 
-public class ViewCard extends RecyclerView.Adapter<ViewCard.FeaturedViewHolder> {
+public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.FeaturedViewHolder> {
 
     ArrayList<FeatureHelper> featuredLocations;
     DatabaseReference databaseReference;
-    ManageStaffActivity activity;
+    PromotionActivity promotionActivity;
 
-    public ViewCard(ArrayList<FeatureHelper> featuredLocations, ManageStaffActivity activity) {
+    public ViewPromotion(ArrayList<FeatureHelper> featuredLocations, PromotionActivity promotionActivity) {
         this.featuredLocations = featuredLocations;
-        this.activity = activity;
+        this.promotionActivity = promotionActivity;
     }
 
     @NonNull
@@ -40,15 +38,13 @@ public class ViewCard extends RecyclerView.Adapter<ViewCard.FeaturedViewHolder> 
         return featuredViewHolder;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
 
         FeatureHelper featuredHelpersClass = featuredLocations.get(position);
 
-        holder.image.setImageResource(featuredHelpersClass.getImage());
         holder.text.setText(featuredHelpersClass.getUserName());
-        holder.btnEdit.setImageResource(featuredHelpersClass.getImage1());
+        holder.btnAddProduct.setImageResource(featuredHelpersClass.getImage1());
         holder.btnDelete.setImageResource(featuredHelpersClass.getImage2());
     }
 
@@ -59,15 +55,14 @@ public class ViewCard extends RecyclerView.Adapter<ViewCard.FeaturedViewHolder> 
 
     public class FeaturedViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView image, btnEdit, btnDelete;
+        ImageView btnAddProduct, btnDelete;
         TextView text;
 
 
         public FeaturedViewHolder(@NonNull View itemView) {
             super(itemView);
-            databaseReference = FirebaseDatabase.getInstance().getReference("Account");
-            image = itemView.findViewById(R.id.img_mn_showAvatar);
-            btnEdit = itemView.findViewById(R.id.btn_mn_editAccount);
+            databaseReference = FirebaseDatabase.getInstance().getReference("Promotion");
+            btnAddProduct = itemView.findViewById(R.id.btn_mn_editAccount);
             btnDelete = itemView.findViewById(R.id.btn_mn_deleteAccount);
             text =  itemView.findViewById(R.id.txtProfileUsername);
             itemView.bringToFront();
@@ -78,13 +73,9 @@ public class ViewCard extends RecyclerView.Adapter<ViewCard.FeaturedViewHolder> 
                 }
             });
 
-            btnEdit.setOnClickListener(view -> {
+            btnAddProduct.setOnClickListener(view -> {
                 int itemPosition = getAdapterPosition();
                 FeatureHelper item = featuredLocations.get(itemPosition);
-
-                Intent intent = new Intent(activity, UpdateEmployeeActivity.class);
-                intent.putExtra("userName",item.getUserName());
-                activity.startActivity(intent);
             });
         }
 

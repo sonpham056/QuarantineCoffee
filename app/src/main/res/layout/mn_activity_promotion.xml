@@ -66,38 +66,22 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="Add"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="70dp"/>
 
         <Button
             android:id="@+id/btn_mn_PromotionEdit"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="Edit"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="70dp"/>
 
-        <Button
-            android:id="@+id/btn_mn_PromotionDelete"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="Delete"
-            android:layout_marginLeft="30dp"/>
     </LinearLayout>
 
-    <TableLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_mn_listPromotion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:stretchColumns="*">
-
-        <TableRow>
-            <TextView
-                android:text="Promotion Name"
-                android:textSize="16sp"/>
-            <TextView
-                android:text="Promotion"
-                android:textSize="16sp"/>
-            <TextView/>
-        </TableRow>
-    </TableLayout>
+        android:layout_marginTop="20dp">
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
 
