@@ -17,9 +17,7 @@ public class ManagerActivity extends AppCompatActivity {
         setContentView(R.layout.mn_activity_manager);
 
         bind();
-
         clicking();
-
     }
 
     private void clicking() {

@@ -23,11 +23,11 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.FeaturedVi
 
     ArrayList<FeatureHelper> featuredLocations;
     DatabaseReference databaseReference;
-    PromotionActivity promotionActivity;
+    PromotionActivity activity;
 
-    public ViewPromotion(ArrayList<FeatureHelper> featuredLocations, PromotionActivity promotionActivity) {
+    public ViewPromotion(ArrayList<FeatureHelper> featuredLocations, PromotionActivity activity) {
         this.featuredLocations = featuredLocations;
-        this.promotionActivity = promotionActivity;
+        this.activity = activity;
     }
 
     @NonNull
@@ -38,13 +38,14 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.FeaturedVi
         return featuredViewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
 
         FeatureHelper featuredHelpersClass = featuredLocations.get(position);
 
         holder.text.setText(featuredHelpersClass.getUserName());
-        holder.btnAddProduct.setImageResource(featuredHelpersClass.getImage1());
+        holder.btnAdd.setImageResource(featuredHelpersClass.getImage1());
         holder.btnDelete.setImageResource(featuredHelpersClass.getImage2());
     }
 
@@ -55,14 +56,15 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.FeaturedVi
 
     public class FeaturedViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView btnAddProduct, btnDelete;
+        ImageView btnAdd, btnDelete;
         TextView text;
 
 
         public FeaturedViewHolder(@NonNull View itemView) {
             super(itemView);
             databaseReference = FirebaseDatabase.getInstance().getReference("Promotion");
-            btnAddProduct = itemView.findViewById(R.id.btn_mn_editAccount);
+
+            btnAdd = itemView.findViewById(R.id.btn_mn_editAccount);
             btnDelete = itemView.findViewById(R.id.btn_mn_deleteAccount);
             text =  itemView.findViewById(R.id.txtProfileUsername);
             itemView.bringToFront();
@@ -73,9 +75,8 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.FeaturedVi
                 }
             });
 
-            btnAddProduct.setOnClickListener(view -> {
-                int itemPosition = getAdapterPosition();
-                FeatureHelper item = featuredLocations.get(itemPosition);
+            btnAdd.setOnClickListener(view -> {
+
             });
         }
 
@@ -89,7 +90,7 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.FeaturedVi
                             FeatureHelper item = featuredLocations.get(itemPosition);
 
                             databaseReference.child(item.getUserName()).removeValue();
-                            Toast.makeText(v.getContext(), "Successfully deleted user: " + item.getUserName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), "Successfully deleted promotion: " + item.getUserName(), Toast.LENGTH_SHORT).show();
                             break;
 
                         case DialogInterface.BUTTON_NEGATIVE:

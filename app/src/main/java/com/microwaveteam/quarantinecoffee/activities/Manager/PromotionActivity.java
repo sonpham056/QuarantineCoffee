@@ -29,7 +29,6 @@ public class PromotionActivity extends AppCompatActivity {
     EditText txtPromotion;
     Button btnAdd;
     Button btnEdit;
-    Button btnDelete;
 
     RecyclerView recyclerViewPromotion;
     ArrayList<Promotion> listPromotion;
@@ -66,9 +65,6 @@ public class PromotionActivity extends AppCompatActivity {
                 btnEditClicked();
             });
 
-            btnDelete.setOnClickListener(view -> {
-                btnDeleteClicked();
-            });
         } catch (Exception e) {
             e.printStackTrace();
             MyAlertDialog.alert(e.getMessage(), this);
@@ -110,10 +106,6 @@ public class PromotionActivity extends AppCompatActivity {
         }
     }
 
-    private void btnDeleteClicked(){
-        showPromotion();
-    }
-
     private boolean checkValid() {
         try {
             if (txtPromotionName.getText().toString().isEmpty() || txtPromotion.getText().toString().isEmpty()) {
@@ -128,7 +120,6 @@ public class PromotionActivity extends AppCompatActivity {
     }
 
     private void showPromotion(){
-        ArrayList list = new ArrayList<>();
         listPromotion = new ArrayList<>();
 
         recyclerViewPromotion = findViewById(R.id.recycle_mn_listPromotion);
@@ -136,7 +127,9 @@ public class PromotionActivity extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 ArrayList<FeatureHelper> listFeatures = new ArrayList<>();
+
                 recyclerViewPromotion.setHasFixedSize(true);
                 recyclerViewPromotion.setLayoutManager(
                         new LinearLayoutManager(PromotionActivity
@@ -144,12 +137,12 @@ public class PromotionActivity extends AppCompatActivity {
                                 .VERTICAL,false));
 
                 for(DataSnapshot ds: snapshot.getChildren()){
-                    Promotion promotion = ds.getValue(Promotion.class);
-                    listPromotion.add(promotion);
-                    String promotionName = promotion.getPromotionName();
-                    listFeatures.add(new FeatureHelper(R.drawable.img_add,
-                            R.drawable.img_del,
-                            promotionName));
+                    Promotion data = ds.getValue(Promotion.class);
+                    listPromotion.add(data);
+                    String promotionDB = data.getPromotionName();
+                    listFeatures.add(new FeatureHelper(R.drawable.img_add
+                            ,R.drawable.img_del
+                            ,promotionDB));
                 }
                 adapter = new ViewPromotion(listFeatures, PromotionActivity.this);
                 recyclerViewPromotion.setAdapter(adapter);

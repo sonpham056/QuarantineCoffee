@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:text="Promotion Name: "
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/txt_mn_PromotionName"
@@ -83,5 +83,5 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20dp">
     </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
 
+</LinearLayout>
