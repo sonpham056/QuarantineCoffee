@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 
@@ -29,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -36,6 +39,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.microwaveteam.quarantinecoffee.R;
+import com.microwaveteam.quarantinecoffee.models.Product;
 
 public class ProductActivity extends AppCompatActivity {
     private final int REQUEST_CODE = 1;

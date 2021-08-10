@@ -6,9 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.microwaveteam.quarantinecoffee.Helper.NavigationDrawer;
 import com.microwaveteam.quarantinecoffee.R;
-import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 
 public class ManagerActivity extends AppCompatActivity {
 
