@@ -3,12 +3,20 @@
     package="com.microwaveteam.quarantinecoffee">
 
     <application
+        android:name=".Helper.HelpNotification"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
+        <service
+            android:name=".Helper.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".activities.Manager.CreateProductTypeActivity"
             android:exported="true" />
