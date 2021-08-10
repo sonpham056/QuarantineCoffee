@@ -35,7 +35,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.URI;
+import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity {
     private final int REQUEST_CODE = 1;
@@ -48,18 +48,19 @@ public class ProductActivity extends AppCompatActivity {
     EditText txt_mn_ProductName,txt_mn_Price,txt_mn_ProductAmount;
     Spinner sp_mn_Category;
     String arr[]={ "Trà sữa", "Cà phê", "Nước ngọt", "Bánh", "Hạt"};
+    ArrayList<String> productTypeList = new ArrayList<String>();
     TextView txt_mn_selection_list;
     ImageView imageView;
     Uri imageUri;
 
-    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Product");
-    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    DatabaseReference myRef;
+    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mn_activity_product);
-        txt_mn_selection_list =(TextView) findViewById(R.id.txt_mn_selection_list);
+        //txt_mn_selection_list =(TextView) findViewById(R.id.txt_mn_selection_list);
         bind();
     }
     private void bind(){
@@ -82,7 +83,12 @@ public class ProductActivity extends AppCompatActivity {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Product");
 
-            myRef.child(sp_mn_Category.getSelectedItem().toString()).child(txt_mn_ProductName.getText().toString()).removeValue();
+            myRef.child(sp_mn_Category.getSelectedItem().toString()).child(txt_mn_ProductName.getText().toString()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Toast.makeText(ProductActivity.this, "Delete succeed", Toast.LENGTH_LONG);
+                }
+            });
 
         });
 
@@ -109,7 +115,6 @@ public class ProductActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }
@@ -124,21 +129,11 @@ public class ProductActivity extends AppCompatActivity {
 
         });
 
-        Spinner spin=(Spinner) findViewById(R.id.sp_mn_Category);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>
-                (
-                        this,
-                        android.R.layout.simple_spinner_item,
-                        arr
-                );
-        //hien thi ds cho spiner
-        adapter.setDropDownViewResource
-                (android.R.layout.simple_list_item_single_choice);
-        spin.setAdapter(adapter);
-        spin.setOnItemSelectedListener(new MyProcessEvent());
+        loadProductTypeList();
+        sp_mn_Category = findViewById(R.id.sp_mn_Category);
 
     }
-
+    //========================================================================================================
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -147,8 +142,9 @@ public class ProductActivity extends AppCompatActivity {
             imageView.setImageURI(imageUri);
         }
     }
-
+    //========================================================================================================
     private void btnAddClicked() {
+        myRef = FirebaseDatabase.getInstance().getReference("Product");
         Product product = new Product(txt_mn_ProductName.getText().toString(), Long.parseLong(txt_mn_Price.getText().toString())  ,
                 Integer.parseInt(txt_mn_ProductAmount.getText().toString()) , sp_mn_Category.getSelectedItem().toString()
         );
@@ -156,10 +152,16 @@ public class ProductActivity extends AppCompatActivity {
             imageToFireBase(imageUri);
             product.setImage(imgFireBase.toString());
         }
-        myRef.child(product.getCategory()).child(product.getProductName()).setValue(product);
+        myRef.child(product.getCategory()).child(product.getProductName()).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(ProductActivity.this, "Add succeed!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void btnAddClickedWithoutSendingImage() {
+        myRef = FirebaseDatabase.getInstance().getReference("Product");
         Product product = new Product(txt_mn_ProductName.getText().toString(), Long.parseLong(txt_mn_Price.getText().toString())  ,
                 Integer.parseInt(txt_mn_ProductAmount.getText().toString()) , sp_mn_Category.getSelectedItem().toString()
         );
@@ -168,8 +170,32 @@ public class ProductActivity extends AppCompatActivity {
         }
         myRef.child(product.getCategory()).child(product.getProductName()).setValue(product);
     }
+    //========================================================================================================
+    private void loadProductTypeList() {
+        myRef = FirebaseDatabase.getInstance().getReference("ProductType");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() || snapshot != null) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String p = dataSnapshot.getValue(String.class);
+                        productTypeList.add(p);
+                    }
+                    ArrayAdapter<String> adapter=new ArrayAdapter<String>(ProductActivity.this, android.R.layout.simple_spinner_item, productTypeList);
+                    //hien thi ds cho spiner
+                    adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+                    sp_mn_Category.setAdapter(adapter);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void imageToFireBase(Uri uri) {
+        storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference fileRef = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -200,22 +226,5 @@ public class ProductActivity extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(resolver.getType(uri));
     }
-
-    private class MyProcessEvent implements OnItemSelectedListener{
-        //chon 1 item
-        public void onItemSelected(AdapterView<?> arg0,
-                                   View arg1,
-                                   int arg2,
-                                   long arg3){
-            txt_mn_selection_list.setText(arr[arg2]);
-        }
-        //neu ko chon gi
-        public void onNothingSelected(AdapterView<?> arg0) {
-            txt_mn_selection_list.setError("sai!!");
-        }
-    }
-
-
-
-
+    //========================================================================================================
 }

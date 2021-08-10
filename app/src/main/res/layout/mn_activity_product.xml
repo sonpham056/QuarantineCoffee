@@ -21,57 +21,55 @@
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_weight=".1">
+        android:layout_weight=".1"
+        android:weightSum="1">
 
         <TextView
 
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_weight=".3"
+            android:gravity="center_vertical"
             android:text="Name:"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/txt_mn_ProductName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
+            android:layout_weight=".65"
             android:hint="Tên"
             android:textSize="16sp" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_weight=".1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight=".3"
             android:drawableLeft="@drawable/ic_baseline_free_breakfast_24"
-            android:paddingTop="15dp"
-            android:text=" Category :"
+            android:gravity="center_vertical"
+            android:text=" Category"
             android:textSize="16sp"
             tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/txt_mn_selection_list"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textColor="#F8FFFFFF" />
-
-
         <Spinner
             android:id="@+id/sp_mn_Category"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_weight=".65"
+            android:layout_marginLeft="20dp"
             android:background="#B43F51B5" />
 
     </LinearLayout>
@@ -81,22 +79,24 @@
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_weight=".1">
+        android:layout_weight=".1"
+        android:weightSum="1">
 
         <TextView
 
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_weight=".3"
+            android:gravity="center_vertical"
             android:text="Amount:"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/txt_mn_ProductAmount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
+            android:layout_weight=".65"
             android:hint="Số lượng"
             android:textSize="16sp" />
     </LinearLayout>
@@ -106,21 +106,23 @@
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_weight=".1">
+        android:layout_weight=".1"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_weight=".3"
+            android:gravity="center_vertical"
             android:text="Price:"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/txt_mn_Price"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
+            android:layout_weight=".65"
             android:hint="Giá"
             android:textSize="16sp" />
     </LinearLayout>
@@ -146,7 +148,8 @@
             android:id="@+id/imageView_mn_product"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".7"
+            android:layout_weight=".65"
+            android:layout_marginLeft="20dp"
             app:srcCompat="@drawable/img_edit" />
 
     </LinearLayout>
