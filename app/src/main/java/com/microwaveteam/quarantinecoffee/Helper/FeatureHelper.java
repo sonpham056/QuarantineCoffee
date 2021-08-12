@@ -11,6 +11,12 @@ public class FeatureHelper {
         this.userName = username;
     }
 
+    public FeatureHelper(int image1, int image2, String userName){
+        this.image1 = image1;
+        this.image2 = image2;
+        this.userName = userName;
+    }
+
     public int getImage() {
         return image;
     }
