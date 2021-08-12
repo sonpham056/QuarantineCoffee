@@ -27,7 +27,9 @@ import com.microwaveteam.quarantinecoffee.activities.LoginActivity;
 import com.microwaveteam.quarantinecoffee.models.Order;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class WaiterActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,9 +43,10 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.w_activity_waiter);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference queueRef = database.getReference("OrderQueue");
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 .format(new Date());
+        DatabaseReference queueRef = database.getReference("OrderQueue").child(currentDate);
+
         binding();
         onClick(queueRef, currentDate);
     }
@@ -63,7 +66,6 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
 
         actionBarDrawerToggle.syncState();
 
-
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getCheckedItem();
@@ -74,8 +76,16 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
     private void onClick(DatabaseReference myRef, String currentDate) {
         btnAddtoCart.setOnClickListener(view -> {
 
-            Order order = new Order("2", "Cafe", "2", false,currentDate);
-            myRef.child(currentDate).push().setValue(order);
+            List<Order> orders = new ArrayList<>();
+            orders.add(new Order("2", "Cafe1", "1", false,currentDate));
+            orders.add(new Order("3", "Cafe2", "3", false,currentDate));
+            orders.add(new Order("1", "Cafe3", "5", false,currentDate));
+            orders.add(new Order("4", "Cafe4", "2", false,currentDate));
+            orders.add(new Order("5", "Cafe5", "2", false,currentDate));
+            orders.add(new Order("6", "Cafe6", "1", false,currentDate));
+            for(Order item :orders){
+                myRef.push().setValue(item);
+            }
 
         });
     }

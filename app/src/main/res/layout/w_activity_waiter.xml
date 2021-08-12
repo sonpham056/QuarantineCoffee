@@ -35,5 +35,6 @@
         android:layout_height="100dp"
         android:text="Go"
         android:id="@+id/w_btn_confirm_order"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        />
 </FrameLayout>
