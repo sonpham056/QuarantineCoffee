@@ -18,7 +18,7 @@ import com.microwaveteam.quarantinecoffee.activities.Manager.ProductTypeActivity
 
 import java.util.List;
 
-public class ProductTypeRecyclerAdapter extends RecyclerView.Adapter<ProductTypeRecyclerAdapter.ProductItemHolder> {
+public class ProductTypeRecyclerAdapter extends RecyclerView.Adapter<ProductTypeRecyclerAdapter.ProductTypeItemHolder> {
 
     private List<String> listProductType;
     private ProductTypeActivity productTypeActivity;
@@ -30,13 +30,13 @@ public class ProductTypeRecyclerAdapter extends RecyclerView.Adapter<ProductType
 
     @NonNull
     @Override
-    public ProductTypeRecyclerAdapter.ProductItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductTypeRecyclerAdapter.ProductTypeItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.mn_recycler_producttype_list_item, parent, false);
-        return new ProductItemHolder(viewItem);
+        return new ProductTypeItemHolder(viewItem);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductTypeRecyclerAdapter.ProductItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductTypeRecyclerAdapter.ProductTypeItemHolder holder, int position) {
         String name = listProductType.get(position);
         holder.txtName.setText(name);
         holder.imgView.setOnClickListener(view -> {
@@ -55,10 +55,10 @@ public class ProductTypeRecyclerAdapter extends RecyclerView.Adapter<ProductType
         return listProductType.size();
     }
 
-    public class ProductItemHolder extends RecyclerView.ViewHolder{
+    public class ProductTypeItemHolder extends RecyclerView.ViewHolder{
         TextView txtName;
         ImageView imgView;
-        public ProductItemHolder(@NonNull View itemView) {
+        public ProductTypeItemHolder(@NonNull View itemView) {
             super(itemView);
 
             txtName = itemView.findViewById(R.id.txt_mn_productType_list_item);
