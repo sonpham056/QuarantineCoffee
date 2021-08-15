@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,10 +27,17 @@ import java.util.Locale;
 
 public class BartenderActivity extends AppCompatActivity {
 
+    Button btnGo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.b_activity_bartender);
+
+        btnGo = findViewById(R.id.btnBartenderGo);
+        btnGo.setOnClickListener(view -> {
+            Intent it = new Intent(BartenderActivity.this,Bar_queueOrder.class);
+            startActivity(it);
+        });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("OrderQueue");
@@ -73,25 +84,25 @@ public class BartenderActivity extends AppCompatActivity {
         assert order != null;
         builder.setMessage("Ban so: " + order.getTable()
                 + "\n" + "Order: " + order.getProductName() + " - " + order.getAmount());
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                snapshot.getRef().removeValue();
-                rePush(database,snapshot,currentDate);
-            }
+        builder.setPositiveButton("Ok", (dialogInterface, i) -> {
+            rePush(database,snapshot,currentDate,order);
         });
-        builder.setNegativeButton("Hong nhận", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                return;
-                //TODO: có không nhận được không?
-            }
+        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+            return;
         });
-        builder.show();
+        if(!BartenderActivity.this.isFinishing()){
+            builder.show();
+        }
     }
-    private void rePush(FirebaseDatabase database, DataSnapshot snapshot, String currentDate) {
+    public void rePush(FirebaseDatabase database, DataSnapshot snapshot, String currentDate, Order order) {
+
+
         DatabaseReference myRef = database.getReference("Order");
-        myRef.child(currentDate).push().setValue(snapshot.getValue(Order.class));
+
+        myRef.child(currentDate).child("Ban" + order.getTable()).setValue(snapshot.getValue(Order.class));
+        String tableStr = "Ban" + order.getTable();
+        DatabaseReference tableRef = database.getReference("Table").child(tableStr).child("isAccepted");
+        tableRef.setValue(true);
     }
 
 }
