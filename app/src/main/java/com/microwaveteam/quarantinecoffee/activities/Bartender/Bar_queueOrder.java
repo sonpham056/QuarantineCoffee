@@ -44,7 +44,7 @@ public class Bar_queueOrder extends AppCompatActivity {
         orders = new ArrayList<>();
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-        myRef = FirebaseDatabase.getInstance().getReference("OrderQueue").child(currentDate);
+        myRef = FirebaseDatabase.getInstance().getReference("Order").child(currentDate);
 
         Query checkDate = myRef.orderByChild("dateTime").equalTo(currentDate);
         checkDate.addValueEventListener(new ValueEventListener() {
@@ -72,22 +72,23 @@ public class Bar_queueOrder extends AppCompatActivity {
             String productName = data.getProductName();
             String amount = data.getAmount();
             Boolean isFinish = data.getFinish();
+            String table = data.getTable();
             if(isFinish){
                 listFeatures.add(
-                        new FeatureHelper(R.drawable.ic_logo_cafe
-                                , R.drawable.ic_finish
+                        new FeatureHelper(R.drawable.ic_finish
+                                ,"Ban" + table
                                 ,productName
-                                ,amount));
+                                ,"SL:" + amount));
             }else{
                 listFeatures.add(
-                        new FeatureHelper(R.drawable.ic_logo_cafe
-                                , R.drawable.ic_checkbox
+                        new FeatureHelper(R.drawable.ic_checkbox
+                                ,"Ban" + table
                                 ,productName
-                                ,amount));
+                                ,"SL:" + amount));
             }
-
             adapter = new ViewQueue(listFeatures, Bar_queueOrder.this);
             featureRecycler.setAdapter(adapter);
+
         }
     }
 }
