@@ -20,19 +20,21 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".333"
+            android:text="Make bill" />
+
+        <Button
             android:id="@+id/btn_w_table_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:layout_marginLeft="10dp"
-            android:text="Table detail" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".15"
-            android:text="" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight=".333"
+            android:text="Detail" />
 
         <Button
             android:id="@+id/btn_w_table_confirm"
