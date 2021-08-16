@@ -74,6 +74,7 @@
         <entry key="app/src/main/res/layout/activity_manage_product.xml" value="0.13145896656534956" />
         <entry key="app/src/main/res/layout/activity_product.xml" value="0.11" />
         <entry key="app/src/main/res/layout/activity_show_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_show_list_queue_order.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/b_activity_bartender.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/hearder_menu.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/layout/image_coffe.xml" value="0.17889492753623187" />
@@ -90,6 +91,8 @@
         <entry key="app/src/main/res/layout/mn_activity_product_food_cake.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/mn_activity_product_food_seed.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/mn_activity_promotion.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/mn_recycler_producttype_list_item.xml" value="0.21195652173913043" />
+        <entry key="app/src/main/res/layout/w_recycler_product_items.xml" value="0.21195652173913043" />
       </map>
     </option>
   </component>
