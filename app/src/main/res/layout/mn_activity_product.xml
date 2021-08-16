@@ -164,7 +164,7 @@
             android:id="@+id/btn_mn_ProductAddEdit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="30dp"
             android:text="Add/Edit" />
 
 
@@ -172,7 +172,7 @@
             android:id="@+id/btn_mn_ProductDelete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"  
+            android:layout_marginRight="30dp"
             android:text="Delete" />
 
         <Button

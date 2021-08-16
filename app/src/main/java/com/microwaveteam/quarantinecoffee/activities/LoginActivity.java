@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,18 +31,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity<switch1> extends AppCompatActivity {
 
     Button btnLogin;
     EditText txtUserName, txtPwd;
     DatabaseReference myRef;
     LoginHistory log;
-
+    Switch switch1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mapping();
+
 
         if (loginIfAlreadyLogged()) {
             txtUserName.setText(setUserString());
@@ -55,6 +57,20 @@ public class LoginActivity extends AppCompatActivity {
                 btnLoginClicked();
             }
         });
+
+        /*switch1 =findViewById(R.id.switch1);
+        switch1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                boolean checked = ((Switch) view).isChecked();
+                if(checked == true){
+
+                }
+                else{
+
+                }
+            }
+        });*/
     }
 
     private void btnLoginClicked() {
@@ -199,4 +215,6 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("My app", MODE_PRIVATE);
         return prefs.getString("password", "nothing Here");
     }
+
+
 }
