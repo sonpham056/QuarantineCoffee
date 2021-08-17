@@ -6,7 +6,6 @@ public class Product {
     private int amount;
     private String category;
     private String image;
-    private boolean isDone;
 
     public Product(String productName, long price, int amount, String category) {
         this.productName = productName;
@@ -57,13 +56,6 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
-
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
-    }
+    
 }
 
