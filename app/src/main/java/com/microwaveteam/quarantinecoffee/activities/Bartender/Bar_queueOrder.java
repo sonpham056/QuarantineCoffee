@@ -70,7 +70,7 @@ public class Bar_queueOrder extends AppCompatActivity {
             Order data = ds.getValue(Order.class);
             orders.add(data);
             String productName = data.getProductName();
-            String amount = data.getAmount();
+            int amount = data.getAmount();
             Boolean isFinish = data.getFinish();
             String table = data.getTable();
             if(isFinish){

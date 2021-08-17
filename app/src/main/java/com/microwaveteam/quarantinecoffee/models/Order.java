@@ -1,23 +1,19 @@
 package com.microwaveteam.quarantinecoffee.models;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     private String table;
     private String productName;
-    private String amount;
+    private String productType;
+    private int amount;
+    private long price;
     private Boolean isFinish;
     private String dateTime;
-
+    private boolean isBill;
     private String key;
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public Order(String table, String productName, String amount, Boolean isFinish, String dateTime) {
+    public Order(String table, String productName, int amount, Boolean isFinish, String dateTime) {
         this.table = table;
         this.productName = productName;
         this.amount = amount;
@@ -26,6 +22,10 @@ public class Order {
     }
 
     public Order() {
+    }
+
+    public Order(String name) {
+        productName = name;
     }
 
     public String getDateTime() {
@@ -52,11 +52,11 @@ public class Order {
         this.productName = productName;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -66,5 +66,37 @@ public class Order {
 
     public void setFinish(Boolean finish) {
         isFinish = finish;
+    }
+
+    public boolean isBill() {
+        return isBill;
+    }
+
+    public void setBill(boolean bill) {
+        isBill = bill;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }
