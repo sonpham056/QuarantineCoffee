@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
         <activity
+            android:name=".activities.Manager.CreateTableActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.Manager.TableActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.Waiter.TableDetailActivity"
             android:exported="true" />
         <activity
