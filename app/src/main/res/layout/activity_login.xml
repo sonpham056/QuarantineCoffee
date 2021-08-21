@@ -51,14 +51,15 @@
         android:layout_marginTop="20dp"/>
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/sw_auto_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="On"
-        android:textOff="Off"
-        app:showText="true"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
         android:text="Auto join"
-        android:layout_marginLeft="10dp"/>
+        android:textOff="Off"
+        android:textOn="On"
+        app:showText="true" />
 
 
 </LinearLayout>
