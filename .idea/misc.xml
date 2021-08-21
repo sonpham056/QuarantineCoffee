@@ -17,10 +17,11 @@
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_manage_staff.xml" value="0.1734375" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_manager.xml" value="0.1793478260869565" />
-        <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_show_list.xml" value="0.2" />
+        <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_show_list.xml" value="0.264" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_show_list_queue_order.xml" value="0.264" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/activity_waiter.xml" value="0.1793478260869565" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/b_activity_bartender.xml" value="0.1828125" />
+        <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/b_activity_queue_order.xml" value="0.22418478260869565" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/grouplist.xml" value="0.22056159420289856" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/hearder_menu.xml" value="0.264" />
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/layout/help_navigation.xml" value="0.18645833333333334" />
@@ -61,7 +62,6 @@
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/sonph/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_single_choice.xml" value="0.11979166666666667" />
         <entry key="..\:/Users/sonph/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.25416666666666665" />
-
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_free_breakfast_24.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.20885416666666667" />

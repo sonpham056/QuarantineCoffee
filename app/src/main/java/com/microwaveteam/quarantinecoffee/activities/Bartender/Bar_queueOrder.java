@@ -70,19 +70,17 @@ public class Bar_queueOrder extends AppCompatActivity {
             Order data = ds.getValue(Order.class);
             orders.add(data);
             String productName = data.getProductName();
-            String amount = data.getAmount();
-            Boolean isFinish = data.getFinish();
-            String table = data.getTable();
-            if(isFinish){
+            int amount = data.getAmount();
+            if(data.getFinish()){
                 listFeatures.add(
                         new FeatureHelper(R.drawable.ic_finish
-                                ,"Ban" + table
+                                ,"Ban"
                                 ,productName
                                 ,"SL:" + amount));
             }else{
                 listFeatures.add(
                         new FeatureHelper(R.drawable.ic_checkbox
-                                ,"Ban" + table
+                                ,"Ban"
                                 ,productName
                                 ,"SL:" + amount));
             }
