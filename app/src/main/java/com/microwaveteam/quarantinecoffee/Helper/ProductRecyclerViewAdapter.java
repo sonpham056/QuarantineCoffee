@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.microwaveteam.quarantinecoffee.R;
+import com.microwaveteam.quarantinecoffee.activities.Waiter.MainWaiterFragment;
 import com.microwaveteam.quarantinecoffee.models.Product;
 import com.squareup.picasso.Picasso;
 
@@ -20,10 +21,10 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductItemHolder> {
-    Fragment fragWaiter;
+    MainWaiterFragment fragWaiter;
     ArrayList<Product> productList;
 
-    public ProductRecyclerViewAdapter(Fragment fragWaiter, ArrayList<Product> productList) {
+    public ProductRecyclerViewAdapter(MainWaiterFragment fragWaiter, ArrayList<Product> productList) {
         this.fragWaiter = fragWaiter;
         this.productList = productList;
     }
@@ -39,7 +40,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     public void onBindViewHolder(@NonNull ProductRecyclerViewAdapter.ProductItemHolder holder, int position) {
         Product product = productList.get(position);
         holder.txtName.setText(product.getProductName());
-        holder.txtPrice.setText("Price" + product.getPrice() + "");
+        holder.txtPrice.setText("Price: " + product.getPrice() + "");
         holder.txtAmount.setText("Amount: " + product.getAmount() + "");
         holder.txtProductType.setText(product.getCategory());
         if (product.getImage() != null) {
@@ -79,6 +80,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         @Override
         public void onClick(View view) {
             //Toast.makeText(fragWaiter.getContext(), "clicked", Toast.LENGTH_SHORT).show();
+            fragWaiter.addToList(getAdapterPosition());
         }
     }
 }

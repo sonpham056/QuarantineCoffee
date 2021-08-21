@@ -35,6 +35,7 @@ public class Bar_queueOrder extends AppCompatActivity {
     ViewQueue adapter;
 
     static Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
@@ -50,7 +51,7 @@ public class Bar_queueOrder extends AppCompatActivity {
         checkDate.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    addTolist(snapshot);
+                addTolist(snapshot);
                 System.out.println(snapshot + "---------------------");
             }
 
@@ -65,28 +66,32 @@ public class Bar_queueOrder extends AppCompatActivity {
         ArrayList<FeatureHelper> listFeatures = new ArrayList<>();
         featureRecycler.setHasFixedSize(true);
         featureRecycler.setLayoutManager(
-                new LinearLayoutManager(Bar_queueOrder.this,LinearLayoutManager.VERTICAL,false));
-        for(DataSnapshot ds :snapshot.getChildren()){
+                new LinearLayoutManager(Bar_queueOrder.this, LinearLayoutManager.VERTICAL, false));
+        for (DataSnapshot ds : snapshot.getChildren()) {
             Order data = ds.getValue(Order.class);
             orders.add(data);
             String productName = data.getProductName();
             int amount = data.getAmount();
-            if(data.getFinish()){
-                listFeatures.add(
-                        new FeatureHelper(R.drawable.ic_finish
-                                ,"Ban"
-                                ,productName
-                                ,"SL:" + amount));
-            }else{
-                listFeatures.add(
-                        new FeatureHelper(R.drawable.ic_checkbox
-                                ,"Ban"
-                                ,productName
-                                ,"SL:" + amount));
-            }
-            adapter = new ViewQueue(listFeatures, Bar_queueOrder.this);
-            featureRecycler.setAdapter(adapter);
+            if (data.getFinish()) {
+                Boolean isFinish = data.getFinish();
+                String table = data.getTable();
+                if (isFinish) {
+                    listFeatures.add(
+                            new FeatureHelper(R.drawable.ic_finish
+                                    , "Ban"
+                                    , productName
+                                    , "SL:" + amount));
+                } else {
+                    listFeatures.add(
+                            new FeatureHelper(R.drawable.ic_checkbox
+                                    , "Ban"
+                                    , productName
+                                    , "SL:" + amount));
+                }
+                adapter = new ViewQueue(listFeatures, Bar_queueOrder.this);
+                featureRecycler.setAdapter(adapter);
 
+            }
         }
     }
 }

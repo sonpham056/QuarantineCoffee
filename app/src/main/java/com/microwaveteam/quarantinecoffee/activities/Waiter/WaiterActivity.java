@@ -81,15 +81,14 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
             int count = 0;
             List<Order> orders = new ArrayList<>();
 
-            orders.add(new Order("Cafe4", 1, false));
-            orders.add(new Order("Cafe2", 2, false));
-            orders.add(new Order("Cafe3", 3, false));
-            orders.add(new Order("Cafe1", 4, false));
-            orders.add(new Order("Cafe3", 5, false));
-            orders.add(new Order("Cafe4", 2, false));
-            orders.add(new Order("Cafe5", 3, false));
-            orders.add(new Order( "Something", 1, false));
-            for (Order item : orders) {
+
+            /*orders.add(new Order("2", "Cafe4", "1", false,currentDate));
+            orders.add(new Order("3", "Cafe1", "3", false,currentDate));
+            orders.add(new Order("1", "Cafe3", "5", false,currentDate));
+            orders.add(new Order("4", "Cafe4", "2", false,currentDate));
+            orders.add(new Order("5", "Cafe5", "2", false,currentDate));
+            orders.add(new Order("6", "Something", "1", false,currentDate));*/
+            for(Order item :orders){
                 count++;
                 tableRef.child("Ban" + count).child(item.getProductName()).setValue(item);
             }

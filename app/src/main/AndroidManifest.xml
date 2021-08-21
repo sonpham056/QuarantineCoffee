@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
-
+        <activity
+            android:name=".activities.Waiter.TableDetailActivity"
+            android:exported="true" />
         <activity
             android:name=".activities.Manager.CreateProductTypeActivity"
             android:exported="true" />
@@ -51,8 +53,9 @@
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true" />
-        <activity android:name=".activities.Bartender.Bar_queueOrder"
-            android:exported="true"/>
+        <activity
+            android:name=".activities.Bartender.Bar_queueOrder"
+            android:exported="true" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
