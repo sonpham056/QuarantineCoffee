@@ -3,6 +3,8 @@ package com.microwaveteam.quarantinecoffee.models;
 public class Promotion {
     private String promotionName;
     private int promotion;
+    private String start;
+    private String end;
 
     public Promotion(){
 
@@ -11,6 +13,13 @@ public class Promotion {
     public Promotion(String promotionName, int promotion) {
         this.promotionName = promotionName;
         this.promotion = promotion;
+    }
+
+    public Promotion(String promotionName, int promotion, String start, String end) {
+        this.promotionName = promotionName;
+        this.promotion = promotion;
+        this.start = start;
+        this.end = end;
     }
 
     public String getPromotionName() {
@@ -32,5 +41,21 @@ public class Promotion {
     @Override
     public String toString() {
         return promotionName + '\t' + promotion;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
     }
 }

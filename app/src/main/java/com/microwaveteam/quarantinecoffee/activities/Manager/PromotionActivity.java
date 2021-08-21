@@ -1,7 +1,11 @@
 package com.microwaveteam.quarantinecoffee.activities.Manager;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -14,14 +18,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.microwaveteam.quarantinecoffee.Helper.FeatureHelper;
 import com.microwaveteam.quarantinecoffee.Helper.ViewPromotion;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.dao.PromotionDAO;
 import com.microwaveteam.quarantinecoffee.models.Promotion;
 import com.microwaveteam.quarantinecoffee.serviceclasses.MyAlertDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class PromotionActivity extends AppCompatActivity {
 
@@ -29,6 +34,8 @@ public class PromotionActivity extends AppCompatActivity {
     EditText txtPromotion;
     Button btnAdd;
     Button btnEdit;
+    EditText txtStart;
+    EditText txtEnd;
 
     RecyclerView recyclerViewPromotion;
     ArrayList<Promotion> listPromotion;
@@ -41,21 +48,37 @@ public class PromotionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mn_activity_promotion);
 
+        showPromotion();
+
         bind();
     }
 
+    @SuppressLint("WrongViewCast")
     private void bind(){
         try {
             txtPromotionName = findViewById(R.id.txt_mn_PromotionName);
             txtPromotion = findViewById(R.id.txt_mn_Promotion);
+            txtStart = findViewById(R.id.txt_mn_startPromotion);
+            txtEnd = findViewById(R.id.txt_mn_endPromotion);
 
             btnAdd = findViewById(R.id.btn_mn_PromotionAdd);
             btnEdit = findViewById(R.id.btn_mn_PromotionEdit);
 
             recyclerViewPromotion = findViewById(R.id.recycle_mn_listPromotion);
-            listPromotion = new ArrayList<>();
 
-            showPromotion();
+            txtStart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startDate();
+                }
+            });
+
+            txtEnd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    endDate();
+                }
+            });
 
             btnAdd.setOnClickListener(view -> {
                 btnAddClicked();
@@ -65,10 +88,46 @@ public class PromotionActivity extends AppCompatActivity {
                 btnEditClicked();
             });
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
             MyAlertDialog.alert(e.getMessage(), this);
         }
+    }
+
+    private void startDate(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                //i:year    i1:month    i2:day
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                calendar.set(i,i1,i2);
+                txtStart.setText(simpleDateFormat.format(calendar.getTime()));
+            }
+        }, year, month, day);
+        datePickerDialog.show();
+    }
+
+    private void endDate(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                //i:year    i1:month    i2:day
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                calendar.set(i,i1,i2);
+                txtEnd.setText(simpleDateFormat.format(calendar.getTime()));
+            }
+        }, year, month, day);
+        datePickerDialog.show();
     }
 
     private void btnAddClicked() {
@@ -77,7 +136,8 @@ public class PromotionActivity extends AppCompatActivity {
                 return;
             }else {
                 Promotion promotion = new Promotion(txtPromotionName.getText().toString(),
-                        Integer.parseInt(txtPromotion.getText().toString()));
+                        Integer.parseInt(txtPromotion.getText().toString()),
+                        txtStart.getText().toString(), txtEnd.getText().toString());
 
                 PromotionDAO.addPromotion(promotion, this);
                 showPromotion();
@@ -120,15 +180,15 @@ public class PromotionActivity extends AppCompatActivity {
     }
 
     private void showPromotion(){
+
         listPromotion = new ArrayList<>();
 
-        recyclerViewPromotion = findViewById(R.id.recycle_mn_listPromotion);
         db = FirebaseDatabase.getInstance().getReference("Promotion");
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                ArrayList<FeatureHelper> listFeatures = new ArrayList<>();
+                ArrayList<Promotion> listFeatures = new ArrayList<>();
 
                 recyclerViewPromotion.setHasFixedSize(true);
                 recyclerViewPromotion.setLayoutManager(
@@ -139,10 +199,9 @@ public class PromotionActivity extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Promotion data = ds.getValue(Promotion.class);
                     listPromotion.add(data);
-                    String promotionDB = data.getPromotionName();
-                    listFeatures.add(new FeatureHelper(R.drawable.img_add
-                            ,R.drawable.img_del
-                            ,promotionDB));
+                    String promotionNameDB = data.getPromotionName();
+                    int promotionDB = data.getPromotion();
+                    listFeatures.add(new Promotion(promotionNameDB, promotionDB));
                 }
                 adapter = new ViewPromotion(listFeatures, PromotionActivity.this);
                 recyclerViewPromotion.setAdapter(adapter);

@@ -7,6 +7,13 @@
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_manage_product.xml" value="0.20416666666666666" />
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_manage_staff.xml" value="0.1" />
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_manager.xml" value="0.20416666666666666" />
+
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_show_list.xml" value="0.14" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_show_list_promotion.xml" value="0.22" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/activity_show_promotion.xml" value="0.1" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/b_activity_bartender.xml" value="0.1" />
+        <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_create_employee.xml" value="0.1" />
+
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_employee.xml" value="0.18" />
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_product.xml" value="0.19202898550724637" />
         <entry key="..\:/DoAn/Android/QuarantineCoffee/app/src/main/res/layout/mn_activity_manager.xml" value="0.17708333333333334" />
