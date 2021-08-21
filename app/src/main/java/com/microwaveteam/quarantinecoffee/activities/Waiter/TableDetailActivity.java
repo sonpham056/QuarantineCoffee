@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.microwaveteam.quarantinecoffee.Helper.OrderRecyclerAdapter;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.models.Bill;
 import com.microwaveteam.quarantinecoffee.models.Order;
+import com.microwaveteam.quarantinecoffee.serviceclasses.MyAlertDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ public class TableDetailActivity extends AppCompatActivity {
     DatabaseReference db;
     DatabaseReference db2;
 
+    SharedPreferences prefs;
+
     Button btnNewly;
     Button btnAll;
     Button btnConfirm;
@@ -49,6 +53,9 @@ public class TableDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        prefs = getSharedPreferences("My app", MODE_PRIVATE);
+
         setContentView(R.layout.w_activity_table_detail);
         Intent intent = getIntent();
         table = intent.getStringExtra("table");
@@ -126,10 +133,11 @@ public class TableDetailActivity extends AppCompatActivity {
             if (listOrderAll.size() < 1) {
                 Toast.makeText(TableDetailActivity.this, "Nothing here to make bill", Toast.LENGTH_SHORT).show();
             } else {
+                String currentDateTime = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss aa", Locale.getDefault()).format(new Date());
                 db = FirebaseDatabase.getInstance().getReference("Bill").child(currentDate);
                 long sum = 0;
                 Bill bill = new Bill();
-                bill.setDate(currentDate);
+                bill.setDate(currentDateTime);
                 for (Order o : listOrderAll) {
                     sum += o.getAmount() * o.getPrice();
                 }
@@ -151,6 +159,8 @@ public class TableDetailActivity extends AppCompatActivity {
                 if (adapter != null) {
                     adapter.setData(listOrderAll);
                 }
+
+                MyAlertDialog.alert("Bill sum: " + bill.getSum() + "$", TableDetailActivity.this);
             }
         });
 
@@ -163,4 +173,5 @@ public class TableDetailActivity extends AppCompatActivity {
         setResult(RESULT_CODE, data);
         super.onBackPressed();
     }
+
 }

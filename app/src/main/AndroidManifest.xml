@@ -14,6 +14,9 @@
             android:exported="true" />
         <activity
             android:name=".activities.Manager.TableActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.Waiter.BillHistoryActivity"
             android:exported="true" />
         <activity
             android:name=".activities.Waiter.TableDetailActivity"

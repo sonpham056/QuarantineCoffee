@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".activities.Waiter.TableDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:weightSum="1"
+        android:layout_weight=".1"
         android:orientation="horizontal">
 
         <Button
@@ -34,14 +36,22 @@
             android:text="All" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_w_list_order"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight=".75">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_w_list_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".15"
         android:orientation="vertical">
 
         <Button
