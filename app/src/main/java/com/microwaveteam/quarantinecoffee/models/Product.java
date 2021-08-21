@@ -56,5 +56,6 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
+    
 }
 
