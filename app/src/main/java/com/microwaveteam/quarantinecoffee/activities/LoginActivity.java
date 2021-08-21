@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -31,23 +32,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class LoginActivity<switch1> extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin;
     EditText txtUserName, txtPwd;
     DatabaseReference myRef;
     LoginHistory log;
-    Switch switch1;
+    Switch swLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mapping();
 
-
         if (loginIfAlreadyLogged()) {
             txtUserName.setText(setUserString());
             txtPwd.setText(setPassString());
+            swLogin.setChecked(true);
             btnLoginClicked();
             //Log.e("LoginActivity", "entered");
         }
@@ -58,17 +60,16 @@ public class LoginActivity<switch1> extends AppCompatActivity {
             }
         });
 
-        /*switch1 =findViewById(R.id.switch1);
-        switch1.setOnClickListener(new View.OnClickListener(){
+/*        swLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view){
-                boolean checked = ((Switch) view).isChecked();
-                if(checked == true){
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                SharedPreferences prefs;
+                SharedPreferences.Editor editor;
 
-                }
-                else{
-
-                }
+                prefs = getSharedPreferences("My app", MODE_PRIVATE);
+                editor = prefs.edit();
+                editor.putString("isAuto", swLogin.isChecked() ? "true" : "false");
+                editor.commit();
             }
         });*/
     }
@@ -168,6 +169,7 @@ public class LoginActivity<switch1> extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         txtPwd = findViewById(R.id.txtPass);
         txtUserName = findViewById(R.id.txt_mn_username_update);
+        swLogin = findViewById(R.id.sw_auto_login);
     }
 
     private Boolean validate() {
@@ -192,6 +194,7 @@ public class LoginActivity<switch1> extends AppCompatActivity {
         editor = prefs.edit();
         editor.putString("userName", userName);
         editor.putString("password", password);
+        editor.putString("isAuto", swLogin.isChecked() ? "true" : "false");
         editor.commit();
     }
 
@@ -200,7 +203,8 @@ public class LoginActivity<switch1> extends AppCompatActivity {
         prefs = getSharedPreferences("My app", MODE_PRIVATE);
         String name = prefs.getString("userName", "nothing Here");
         String pass = prefs.getString("password", "nothing Here");
-        if (name.compareTo("nothing Here") != 0 && pass.compareTo("nothing Here") != 0) {
+        String isAuto = prefs.getString("isAuto", "false");
+        if (name.compareTo("nothing Here") != 0 && pass.compareTo("nothing Here") != 0 && isAuto.compareTo("true") == 0) {
             return true;
         }
         return false;
@@ -215,6 +219,5 @@ public class LoginActivity<switch1> extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("My app", MODE_PRIVATE);
         return prefs.getString("password", "nothing Here");
     }
-
 
 }
