@@ -1,6 +1,5 @@
 package com.microwaveteam.quarantinecoffee.Helper;
 
-import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.Bartender.BartenderActivity;
-import com.microwaveteam.quarantinecoffee.activities.Bartender.BartenderDAL;
 
 import java.util.ArrayList;
 
 public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder> {
 
+    String key;
     ArrayList<FeatureHelper> featuredLocations;
     DatabaseReference databaseReference;
     BartenderActivity activity;
@@ -44,7 +43,7 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
         holder.txtAmount.setText(featuredHelpersClass.amount);
         holder.txtName.setText(featuredHelpersClass.productName);
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
-        holder.btnIsFinish.setOnClickListener(view -> holder.btnIsFinishClicked(view,databaseReference,featuredHelpersClass));
+        holder.btnIsFinish.setOnClickListener(view -> holder.btnIsFinishClicked(view,databaseReference,featuredHelpersClass,featuredHelpersClass.getKey()));
     }
 
     @Override
@@ -65,9 +64,8 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
             itemView.bringToFront();
         }
 
-        private void btnIsFinishClicked(View view, DatabaseReference databaseReference, FeatureHelper featuredHelpersClass) {
-            BartenderActivity.alertDialog("Finish Yet?","Confirm finish","Ban2");
-
+        private void btnIsFinishClicked(View view, DatabaseReference databaseReference, FeatureHelper featuredHelpersClass, String key) {
+            BartenderActivity.alertDialogAndRepush("Finish Yet?","Confirm finish",key);
         }
     }
 }

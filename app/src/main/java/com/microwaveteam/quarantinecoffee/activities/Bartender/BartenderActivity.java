@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.ChildEventListener;
@@ -48,17 +49,15 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
     Button btnGo;
     ViewQueue adapter;
     ArrayList<FeatureHelper> listFeatures;
-    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+    static String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.b_activity_bartender);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Table");
+
         listFeatures = new ArrayList<>();
-
-
         featureRecycler = findViewById(R.id.recycle_order_queue);
         featureRecycler.setHasFixedSize(true);
         featureRecycler.setLayoutManager(
@@ -67,6 +66,7 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
         adapter = new ViewQueue(listFeatures, BartenderActivity.this);
         featureRecycler.setAdapter(adapter);
 
+        DatabaseReference myRef = database.getReference("Table");
         Query check = myRef.orderByChild("isAccepted").equalTo(false);
 
         //System.out.println("----------" + check.getPath().toString() + "-------------");
@@ -83,7 +83,6 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
                     return;
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -98,6 +97,7 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
 
         //Drawer navigation init
         drawerLayout = findViewById(R.id.bar_drawer_layout);
+
         navigationView = findViewById(R.id.bar_navigationView);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(BartenderActivity.this,
                 drawerLayout,
@@ -105,6 +105,8 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
                 R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getCheckedItem();
@@ -129,39 +131,57 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
 
     public void addTolist(DataSnapshot snapshot) {
         for (DataSnapshot ds : snapshot.getChildren()) {
-            Order data = ds.getValue(Order.class);
-            orders.add(data);
-            String productName = data.getProductName();
-            int amount = data.getAmount();
-            System.out.println("-----data.getProductName()---" + data.getProductName());
+            Order orderData = ds.getValue(Order.class);
+
+            orders.add(orderData);
+            String productName = orderData.getProductName();
+            int amount = orderData.getAmount();
+            System.out.println("-------.addTolist" + orderData.getKey());
+            System.out.println("-----data.getProductName()---" + productName);
             listFeatures.add(
                     new FeatureHelper(
                             R.drawable.ic_checkbox,
-                            "" + data.getTable()
-                            ,"" + data.getProductName(),
-                            "SL: " + data.getAmount()));
+                            "" + orderData.getTable()
+                            ,"" + productName
+                            ,"SL: " + amount
+                            ,orderData.getKey()));
             featureRecycler.setAdapter(adapter);
 
         }
     }
-    public static void alertDialog(String title, String message, String table){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(title);
-        builder.setMessage(message + "/n" + table);
-        builder.setPositiveButton("Ok", (dialogInterface, i) -> {
-            BartenderActivity.rePush(table, table, context);
+    public static void alertDialogAndRepush(String title, String message, String OrderKey){
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("OrderQueue").child(currentDate).child(OrderKey);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Order order = snapshot.getValue(Order.class);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(title);
+                builder.setMessage(message + "\n" + order.getTable() + "\n" + order.getProductName() + "\n" + order.getAmount());
+                builder.setPositiveButton("Ok", (dialogInterface, i) -> {
+                    BartenderActivity.rePush(order, context);
+                    myRef.removeValue((error, ref) -> Toast.makeText(context,"Success removed Queue",Toast.LENGTH_LONG).show());
+                });
+                builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+                    return;
+                });
+                builder.show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
-        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
-            return;
-        });
-        builder.show();
+
+
+
     }
 
-    private static void rePush(String table, String key, Context context) {
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("OrderQueue");
-        Query checkOrder = myRef.orderByChild("table").equalTo(key);
-        //TODO: cham hoi?
-
+    private static void rePush(Order order, Context context) {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Order");
+        myRef.child(currentDate).child(order.getKey());
+        myRef.setValue(order, (error, ref) -> Toast.makeText(context,"Success add Order",Toast.LENGTH_LONG).show());
     }
 
     @SuppressLint("NonConstantResourceId")

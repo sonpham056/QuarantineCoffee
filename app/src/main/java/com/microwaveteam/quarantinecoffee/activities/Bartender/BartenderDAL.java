@@ -32,11 +32,7 @@ import java.util.Locale;
 
 public class BartenderDAL {
     private static FirebaseDatabase db = FirebaseDatabase.getInstance();
-    private static RecyclerView featureRecycler;
-    private static Context context;
-    private static List<Order> orders;
-    private static Button btnGo;
-    private static ViewQueue adapter;
+
 
     @SuppressLint("RestrictedApi")
     public static List<Order> showNotiAndRemoveQueue(String key, Context context) {
@@ -49,8 +45,10 @@ public class BartenderDAL {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+
                 for (DataSnapshot data : snapshot.getChildren()) {
                     orderList.add(data.getValue(Order.class));
+                    System.out.println("======data" + data.getRef().getPath().toString());
                 }
                 for (Order item : orderList) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -77,6 +75,6 @@ public class BartenderDAL {
 
     private static void accept(String table) {
         DatabaseReference myRef = db.getReference("Table").child(table);
-        myRef.child("isAccepted").setValue("true");
+        myRef.child("isAccepted").setValue(true);
     }
 }
