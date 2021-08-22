@@ -4,7 +4,7 @@ public class FeatureHelper {
     int image, image1, image2;
     String  userName;
 
-    String productName, amount, table;
+    String productName, amount, table,time;
     public FeatureHelper(int image, int image1, int image2, String username) {
         this.image = image;
         this.image1 = image1;
@@ -17,13 +17,13 @@ public class FeatureHelper {
         this.image2 = image2;
         this.userName = userName;
     }
-
-    public FeatureHelper(int image2,String table, String productName,String amount){
-        this.table = table;
+    public FeatureHelper(int image2,String table,String name,String amount){
         this.image2 = image2;
-        this.productName = productName;
+        this.table = table;
+        this.productName = name;
         this.amount = amount;
     }
+
 
     public int getImage() {
         return image;

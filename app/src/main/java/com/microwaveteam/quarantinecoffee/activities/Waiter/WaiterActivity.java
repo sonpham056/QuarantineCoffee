@@ -50,9 +50,10 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
                 .format(new Date());
         DatabaseReference queueRef = database.getReference("OrderQueue").child(currentDate);
 
+
         DatabaseReference tableRef = database.getReference("Table");
         binding();
-        onClick(queueRef, currentDate,tableRef);
+        onClick(queueRef, currentDate, tableRef);
     }
 
 
@@ -83,6 +84,7 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
             int count = 0;
             List<Order> orders = new ArrayList<>();
 
+
             /*orders.add(new Order("2", "Cafe4", "1", false,currentDate));
             orders.add(new Order("3", "Cafe1", "3", false,currentDate));
             orders.add(new Order("1", "Cafe3", "5", false,currentDate));
@@ -91,19 +93,15 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
             orders.add(new Order("6", "Something", "1", false,currentDate));*/
             for(Order item :orders){
                 count++;
-                myRef.child("Ban" + count).setValue(item);
+                tableRef.child("Ban" + count).child(item.getProductName()).setValue(item);
             }
 
-            for(int i = 1; i < 7; i ++){
+            for (int i = 1; i < 7; i++) {
                 String tableStr = "Ban" + i;
                 tableRef.child(tableStr).child("isAccepted").setValue(false);
             }
         });
     }
-
-
-
-
 
 
     @SuppressLint("NonConstantResourceId")
