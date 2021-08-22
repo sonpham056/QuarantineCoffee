@@ -11,6 +11,7 @@ public class ManageProductActivity extends AppCompatActivity {
     Button btnProduct;
     Button btnPromotion;
     Button btnProductType;
+    Button btnTable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,17 +23,23 @@ public class ManageProductActivity extends AppCompatActivity {
         btnProduct = findViewById(R.id.btnProduct);
         btnPromotion = findViewById(R.id.btnPromotion);
         btnProductType = findViewById(R.id.btn_mn_productType_mn_product);
+        btnTable = findViewById(R.id.btn_mn_table_mn_product);
+
 
         btnProduct.setOnClickListener(view -> {
             Intent intent = new Intent(ManageProductActivity.this,ProductActivity.class);
             startActivity(intent);
         });
         clicking();
-
+        btnTable.setOnClickListener(view -> {
+            Intent intent = new Intent(ManageProductActivity.this,TableActivity.class);
+            startActivity(intent);
+        });
         btnProductType.setOnClickListener(view -> {
             Intent intent = new Intent(ManageProductActivity.this, ProductTypeActivity.class);
             startActivity(intent);
         });
+
     }
 
     private void clicking() {
@@ -41,4 +48,6 @@ public class ManageProductActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+
 }

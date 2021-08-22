@@ -43,7 +43,7 @@
         <entry key="..\:/DoAnAndroid/QuarantineCoffee/app/src/main/res/menu/main_navigation.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_create_or_update.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_cudactivity.xml" value="0.264" />
-        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_main.xml" value="0.12291666666666666" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_manage_employee.xml" value="0.25" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_manage_staff.xml" value="0.25" />
@@ -52,7 +52,6 @@
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/activity_show_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/b_activity_bartender.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/hearder_menu.xml" value="0.20104166666666667" />
-        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/image_click.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_create_employee.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_create_product_type.xml" value="0.264" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_employee.xml" value="0.25416666666666665" />
@@ -63,10 +62,12 @@
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_update_employee.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_listview_producttype.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_recycler_producttype_list_item.xml" value="0.24954710144927536" />
+
+        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/w_activity_bill_history.xml" value="0.1921875" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/w_activity_table_detail.xml" value="0.4" />
+
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/w_activity_waiter.xml" value="0.2" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/w_fragment_main_waiter.xml" value="0.3401360544217687" />
-        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/w_recycler_order_items.xml" value="0.4" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/w_recycler_product_items.xml" value="0.25" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/menu/main_navigation.xml" value="0.264" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
@@ -90,8 +91,12 @@
         <entry key="app/src/main/res/layout/hearder_menu.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/layout/image_coffe.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/mn_activity_create_employee.xml" value="0.18885869565217392" />
+        <entry key="app/src/main/res/layout/mn_activity_create_product_type.xml" value="0.21195652173913043" />
+        <entry key="app/src/main/res/layout/mn_activity_create_table.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/mn_activity_manage_product.xml" value="0.17889492753623187" />
+        <entry key="app/src/main/res/layout/mn_activity_manage_product_type.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/mn_activity_manage_staff.xml" value="0.17889492753623187" />
+        <entry key="app/src/main/res/layout/mn_activity_manage_table.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/mn_activity_manager.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/mn_activity_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/mn_activity_product_drink.xml" value="0.11" />
@@ -102,16 +107,28 @@
         <entry key="app/src/main/res/layout/mn_activity_product_food_cake.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/mn_activity_product_food_seed.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/mn_activity_promotion.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/mn_activity_update_employee.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/mn_recycler_producttype_list_item.xml" value="0.21195652173913043" />
+        <entry key="app/src/main/res/layout/mn_recycler_table_list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/w_activity_table_detail.xml" value="0.21195652173913043" />
+        <entry key="app/src/main/res/layout/w_activity_waiter.xml" value="0.16458333333333333" />
+        <entry key="app/src/main/res/layout/w_recycler_order_items.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/w_recycler_product_items.xml" value="0.21195652173913043" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.16458333333333333" />
+      </ProjectState>
+    </option>
   </component>
 </project>

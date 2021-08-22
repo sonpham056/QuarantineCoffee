@@ -38,6 +38,7 @@ import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.models.Bill;
 import com.microwaveteam.quarantinecoffee.models.Order;
 import com.microwaveteam.quarantinecoffee.models.Product;
+import com.microwaveteam.quarantinecoffee.serviceclasses.MyAlertDialog;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
@@ -241,10 +242,11 @@ public class MainWaiterFragment extends Fragment {
                 if (listOrderAll.size() < 1) {
                     Toast.makeText(MainWaiterFragment.this.getContext(), "Nothing here to make bill", Toast.LENGTH_SHORT).show();
                 } else {
+                    String currentDateTime = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss aa", Locale.getDefault()).format(new Date());
                     db = FirebaseDatabase.getInstance().getReference("Bill").child(currentDate);
                     long sum = 0;
                     Bill bill = new Bill();
-                    bill.setDate(currentDate);
+                    bill.setDate(currentDateTime);
                     for (Order o : listOrderAll) {
                         sum += o.getAmount() * o.getPrice();
                     }
@@ -261,6 +263,7 @@ public class MainWaiterFragment extends Fragment {
                     }
                     listOrderAll.clear();
 
+                    MyAlertDialog.alert("Bill sum: " + bill.getSum() + "$", MainWaiterFragment.this.getContext());
                     Toast.makeText(MainWaiterFragment.this.getContext(), "Make bill success!", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -50,6 +50,4 @@
             android:layout_marginLeft="60dp">
         </Button>
     </LinearLayout>
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

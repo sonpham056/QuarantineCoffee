@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -36,12 +37,14 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Button btnAddtoCart;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.w_activity_waiter);
 
+        prefs = getSharedPreferences("My app", MODE_PRIVATE);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 .format(new Date());
@@ -106,10 +109,23 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.help_navItem_exit:
-                finish();
+                /*Intent it = new Intent(WaiterActivity.this, LoginActivity.class);
+                startActivity(it);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.commit();*/
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.commit();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("EXIT", true);
+                startActivity(intent);
                 break;
             case R.id.help_navItem_profile:
-                //TODO: excuse me
+                Intent intentBillHis = new Intent(this, BillHistoryActivity.class);
+                startActivity(intentBillHis);
+                break;
             case R.id.help_navItem_timekeeper:
                 //TODO: excuse me
         }
@@ -117,5 +133,12 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
         return true;
     }
 
-
+    @Override
+    protected void onResume() {
+        SharedPreferences.Editor editor = prefs.edit();
+        if (prefs.getString("userName", "nothing Here").compareTo("nothing Here") == 0) {
+            finish();
+        }
+        super.onResume();
+    }
 }
