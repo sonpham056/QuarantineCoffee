@@ -190,6 +190,9 @@ public class MainWaiterFragment extends Fragment {
         db3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (spinner.getSelectedItem() == null) {
+                    return;
+                }
                 if (snapshot.exists()) {
                     listOrderAll.clear();
                     for (DataSnapshot data : snapshot.getChildren()) {
