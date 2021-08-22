@@ -19,10 +19,14 @@ public class Order implements Serializable {
         this.amount = amount;
         this.isFinish = isFinish;
         this.dateTime = dateTime;
+
     }
 
     public Order() {
     }
+
+
+    public String getProductName() { return productName;    }
 
     public Order(String name) {
         productName = name;
@@ -44,9 +48,6 @@ public class Order implements Serializable {
         this.table = table;
     }
 
-    public String getProductName() {
-        return productName;
-    }
 
     public void setProductName(String productName) {
         this.productName = productName;
