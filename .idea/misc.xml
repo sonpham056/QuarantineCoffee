@@ -58,8 +58,9 @@
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_employee.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_product.xml" value="0.146875" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_manage_product_type.xml" value="0.25" />
-        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_manager.xml" value="0.11979166666666667" />
+        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_manager.xml" value="0.4" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_product.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_statistical.xml" value="0.4" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_activity_update_employee.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_listview_producttype.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/sonph/AndroidStudioProjects/QuarantineCoffee/app/src/main/res/layout/mn_recycler_producttype_list_item.xml" value="0.24954710144927536" />
@@ -109,8 +110,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="11" project-jdk-type="JavaSDK">
-
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
