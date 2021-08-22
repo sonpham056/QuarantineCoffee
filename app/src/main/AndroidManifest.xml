@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
         <activity
+            android:name=".activities.Manager.StatisticalActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.Manager.CreateTableActivity"
             android:exported="true" />
         <activity
             android:name=".activities.Manager.TableActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activities.Waiter.BillHistoryActivity"
             android:exported="true" />
