@@ -106,8 +106,7 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.help_navItem_exit:
-                Intent it = new Intent(WaiterActivity.this, LoginActivity.class);
-                startActivity(it);
+                finish();
                 break;
             case R.id.help_navItem_profile:
                 //TODO: excuse me

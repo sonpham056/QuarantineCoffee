@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.Manager.ManagerActivity"
+    android:id="@+id/manager_drawer"
     android:orientation="vertical">
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/manager_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#fff"
+        app:headerLayout="@layout/hearder_menu"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/main_navigation" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btnManageProduct"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:text="Manage Product"
+            android:textSize="25sp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="60dp">
+        </Button>
 
-    <Button
-        android:id="@+id/btnManageProduct"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:text="Manage Product"
-        android:textSize="25sp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="60dp">
-    </Button>
+        <Button
+            android:id="@+id/btnManageEmployee"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:text="Manage Employee"
+            android:textSize="25sp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="60dp">
+        </Button>
 
-    <Button
-        android:id="@+id/btnManageEmployee"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:text="Manage Employee"
-        android:textSize="25sp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="60dp">
-    </Button>
+        <Button
+            android:id="@+id/btnStatistical"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:text="Statistical"
+            android:textSize="25sp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="60dp">
+        </Button>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnStatistical"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:text="Statistical"
-        android:textSize="25sp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="60dp">
-    </Button>
 
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
