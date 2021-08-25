@@ -45,7 +45,7 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
     NavigationView navigationView;
     RecyclerView featureRecycler;
     static Context context;
-    List<Order> orders;
+    //List<Order> orders;
     Button btnGo;
     ViewQueue adapter;
     ArrayList<FeatureHelper> listFeatures;
@@ -62,6 +62,25 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
         featureRecycler.setHasFixedSize(true);
         featureRecycler.setLayoutManager(
                 new LinearLayoutManager(BartenderActivity.this, LinearLayoutManager.VERTICAL, false));
+
+        context = this;
+        //orders = new ArrayList<>();
+
+        //Drawer navigation init
+        drawerLayout = findViewById(R.id.bar_drawer_layout);
+
+        navigationView = findViewById(R.id.bar_navigationView);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(BartenderActivity.this,
+                drawerLayout,
+                R.string.open,
+                R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getCheckedItem();
 
         adapter = new ViewQueue(listFeatures, BartenderActivity.this);
         featureRecycler.setAdapter(adapter);
@@ -92,28 +111,9 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
     }
 
     private void binding(String key) {
-        context = this;
-        orders = new ArrayList<>();
-
-        //Drawer navigation init
-        drawerLayout = findViewById(R.id.bar_drawer_layout);
-
-        navigationView = findViewById(R.id.bar_navigationView);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(BartenderActivity.this,
-                drawerLayout,
-                R.string.open,
-                R.string.close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView.bringToFront();
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getCheckedItem();
-
         //init database
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("OrderQueue").child(currentDate);
-        Query checkOrder = myRef.orderByChild("table").equalTo(key);
+        Query checkOrder = myRef.orderByChild("table");
 
         checkOrder.addValueEventListener(new ValueEventListener() {
             @SuppressLint("RestrictedApi")
@@ -130,10 +130,12 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void addTolist(DataSnapshot snapshot) {
+        //orders.clear();
+        listFeatures.clear();
         for (DataSnapshot ds : snapshot.getChildren()) {
             Order orderData = ds.getValue(Order.class);
 
-            orders.add(orderData);
+            //orders.add(orderData);
             String productName = orderData.getProductName();
             int amount = orderData.getAmount();
             System.out.println("-------.addTolist" + orderData.getKey());
@@ -145,9 +147,8 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
                             ,"" + productName
                             ,"SL: " + amount
                             ,orderData.getKey()));
-            featureRecycler.setAdapter(adapter);
-
         }
+        adapter.notifyDataSetChanged();
     }
     public static void alertDialogAndRepush(String title, String message, String OrderKey){
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("OrderQueue").child(currentDate).child(OrderKey);
