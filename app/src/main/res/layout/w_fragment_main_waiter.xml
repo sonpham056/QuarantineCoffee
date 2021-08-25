@@ -6,11 +6,19 @@
     android:orientation="vertical"
     tools:context=".activities.Waiter.MainWaiterFragment">
 
+    <EditText
+        android:id="@+id/txt_w_search_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Type something to search"
+        android:inputType="textPersonName" />
+
     <Spinner
         android:id="@+id/spinner_w_list_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="32dp"
+        android:minHeight="48dp"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
