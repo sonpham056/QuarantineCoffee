@@ -42,6 +42,7 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
         holder.btnIsFinish.setImageResource(featuredHelpersClass.image2);
         holder.txtAmount.setText(featuredHelpersClass.amount);
         holder.txtName.setText(featuredHelpersClass.productName);
+        holder.txtProductType.setText(featuredHelpersClass.productType);
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         holder.btnIsFinish.setOnClickListener(view -> holder.btnIsFinishClicked(view,databaseReference,featuredHelpersClass,featuredHelpersClass.getKey()));
     }
@@ -53,7 +54,7 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
 
     public class FeaturedViewHolder extends RecyclerView.ViewHolder {
         ImageView btnIsFinish;
-        TextView txtName, txtAmount, txtTable;
+        TextView txtName, txtAmount, txtTable, txtProductType;
         public FeaturedViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -61,6 +62,7 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
             txtName = itemView.findViewById(R.id.txt_order_ProductName);
             txtAmount = itemView.findViewById(R.id.txt_order_amount);
             txtTable = itemView.findViewById(R.id.txt_order_table);
+            txtProductType = itemView.findViewById(R.id.txt_order_product_type);
             itemView.bringToFront();
         }
 

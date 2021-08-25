@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/time_show_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="User name" />
+
+    <TextView
+        android:id="@+id/time_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngay: xx-xx-xx"
+        android:textSize="20sp"
+        android:layout_marginStart="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/time_hours_working"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginStart="25dp"
+        android:text="1000" />
+</LinearLayout>
