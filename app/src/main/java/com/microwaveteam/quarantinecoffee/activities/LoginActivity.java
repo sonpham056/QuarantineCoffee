@@ -101,20 +101,17 @@ public class LoginActivity extends AppCompatActivity {
                             if (RoleDb.equals("1")) {
                                 intent = new Intent(LoginActivity.this, WaiterActivity.class);
                                 intent.putExtra("UserNameLogged", usernameEntered);
-                                intent.putExtra("Role", 1);
                                 startActivity(intent);
 
                             } else if (RoleDb.equals("2")) {
                                 intent = new Intent(LoginActivity.this, BartenderActivity.class);
                                 intent.putExtra("UserNameLogged", usernameEntered);
-                                intent.putExtra("Role", 2);
                                 startActivity(intent);
 
                             } else if (RoleDb.equals("0")) {
                                 intent = new Intent(LoginActivity.this, ManagerActivity.class);
-                                startActivity(intent);
                                 intent.putExtra("UserNameLogged", usernameEntered);
-                                intent.putExtra("Role", 0);
+                                startActivity(intent);
                             } else {
 
                             }

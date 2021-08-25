@@ -2,7 +2,7 @@ package com.microwaveteam.quarantinecoffee.Helper;
 
 public class FeatureHelper {
     int image, image1, image2;
-    String  userName,key;
+    String  userName,key, productType;
 
     String productName, amount, table,time;
     public FeatureHelper(int image, int image1, int image2, String username) {
@@ -17,12 +17,13 @@ public class FeatureHelper {
         this.image2 = image2;
         this.userName = userName;
     }
-    public FeatureHelper(int image2,String table,String name,String amount,String key){
+    public FeatureHelper(int image2,String table,String name,String amount,String productType,String key){
         this.image2 = image2;
         this.table = table;
         this.productName = name;
         this.amount = amount;
         this.key = key;
+        this.productType = productType;
     }
 
 
