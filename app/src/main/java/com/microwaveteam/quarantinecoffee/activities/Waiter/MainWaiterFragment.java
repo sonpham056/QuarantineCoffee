@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.models.Bill;
 import com.microwaveteam.quarantinecoffee.models.Order;
 import com.microwaveteam.quarantinecoffee.models.Product;
+import com.microwaveteam.quarantinecoffee.serviceclasses.MyAlertDialog;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
@@ -75,6 +79,7 @@ public class MainWaiterFragment extends Fragment {
     Button btnBill;
     Button btnDetail;
     Button btnConfirm;
+    EditText txtSearch;
 
     WaiterActivity waiterActivity;
 
@@ -129,6 +134,7 @@ public class MainWaiterFragment extends Fragment {
         btnBill = view.findViewById(R.id.btn_w_make_bill_fragment);
         btnConfirm = view.findViewById(R.id.btn_w_table_confirm);
         btnDetail = view.findViewById(R.id.btn_w_table_detail);
+        txtSearch = view.findViewById(R.id.txt_w_search_product);
 
 
         db = FirebaseDatabase.getInstance().getReference("Product");
@@ -189,6 +195,9 @@ public class MainWaiterFragment extends Fragment {
         db3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (spinner.getSelectedItem() == null) {
+                    return;
+                }
                 if (snapshot.exists()) {
                     listOrderAll.clear();
                     for (DataSnapshot data : snapshot.getChildren()) {
@@ -241,10 +250,11 @@ public class MainWaiterFragment extends Fragment {
                 if (listOrderAll.size() < 1) {
                     Toast.makeText(MainWaiterFragment.this.getContext(), "Nothing here to make bill", Toast.LENGTH_SHORT).show();
                 } else {
+                    String currentDateTime = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss aa", Locale.getDefault()).format(new Date());
                     db = FirebaseDatabase.getInstance().getReference("Bill").child(currentDate);
                     long sum = 0;
                     Bill bill = new Bill();
-                    bill.setDate(currentDate);
+                    bill.setDate(currentDateTime);
                     for (Order o : listOrderAll) {
                         sum += o.getAmount() * o.getPrice();
                     }
@@ -261,7 +271,30 @@ public class MainWaiterFragment extends Fragment {
                     }
                     listOrderAll.clear();
 
+                    MyAlertDialog.alert("Bill sum: " + bill.getSum() + "$", MainWaiterFragment.this.getContext());
                     Toast.makeText(MainWaiterFragment.this.getContext(), "Make bill success!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        txtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String text = txtSearch.getText().toString();
+                if (text.isEmpty()) {
+                    adapter.updateData(productList);
+                } else {
+                    filter(text);
                 }
             }
         });
@@ -309,29 +342,6 @@ public class MainWaiterFragment extends Fragment {
         });
         return view;
     }
-
-    /*public void sendToTable(int index) {
-        Product p = productList.get(index);
-        Order o = new Order();
-        for (Order find : productListRetrieved) {
-            if (find.getProductName().compareTo(p.getProductName()) == 0) {
-                o = find;
-                break;
-            }
-        }
-        Log.i("line190waiterfrag", "size: " + productListRetrieved.size());
-        o.setAmount(o.getAmount() + 1);
-        o.setFinish(false);
-        o.setProductName(p.getProductName());
-        db = FirebaseDatabase.getInstance().getReference("Table");
-        db.child(spinner.getSelectedItem().toString()).child(p.getProductName()).setValue(o, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                db.child(spinner.getSelectedItem().toString()).child("isAccepted").setValue(false);
-                Toast.makeText(MainWaiterFragment.this.getContext(), "Added to table", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
 
     public void addToList(int position) {
         Product p = productList.get(position);
@@ -381,27 +391,14 @@ public class MainWaiterFragment extends Fragment {
         }
     }
 
-    /*private void retrieveListProduct() {
-        db = FirebaseDatabase.getInstance().getReference("Table");
-        db.child(spinner.getSelectedItem().toString()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    productListRetrieved.clear();
-                    for (DataSnapshot data : snapshot.getChildren()) {
-                        if (data.getKey().compareTo("isAccepted") != 0) {
-                            Order order = data.getValue(Order.class);
-                            productListRetrieved.add(order);
-                            Log.i("line209waiterfrag", data.getKey());
-                        }
-                    }
-                }
+    void filter(String text){
+        ArrayList<Product> temp = new ArrayList();
+        for(Product d: productList){
+            if(d.getProductName().contains(text)){
+                temp.add(d);
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
+        }
+        //update recyclerview
+        adapter.updateData(temp);
+    }
 }

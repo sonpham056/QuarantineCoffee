@@ -1,6 +1,8 @@
 package com.microwaveteam.quarantinecoffee.models;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String productName;
     private long price;
     private int amount;

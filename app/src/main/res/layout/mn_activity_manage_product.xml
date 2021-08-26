@@ -7,32 +7,62 @@
     tools:context=".activities.Manager.ManageProductActivity"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnProduct"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Product"
-        android:textSize="25sp"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="60dp">
-    </Button>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".25"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btnProduct"
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:text="Product"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnPromotion"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Promotion"
-        android:textSize="25sp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="60dp">
-    </Button>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".25"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btnPromotion"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Promotion"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal">
+        </Button>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_mn_productType_mn_product"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="100dp"
-        android:text="Product Type"
-        android:textSize="25sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".25"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_mn_productType_mn_product"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Product Type"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".25"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_mn_table_mn_product"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Table"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
 </LinearLayout>

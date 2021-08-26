@@ -1,6 +1,5 @@
 package com.microwaveteam.quarantinecoffee.Helper;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.TableDetailActivity;
 import com.microwaveteam.quarantinecoffee.models.Order;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderRecyclerAdapter.OrderItemHolder> {
@@ -65,16 +63,13 @@ public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderRecyclerAdap
             }
         });
 
-        holder.imgPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isClickable) {
-                    holder.imgPlus.startAnimation(AnimationUtils.loadAnimation(tableDetailActivity.getApplicationContext(), R.anim.image_animation));
-                    order.setAmount(order.getAmount() + 1);
-                    holder.txtAmount.setText("Amount: " + order.getAmount() + "");
-                }
-
+        holder.imgPlus.setOnClickListener(view -> {
+            if (isClickable) {
+                holder.imgPlus.startAnimation(AnimationUtils.loadAnimation(tableDetailActivity.getApplicationContext(), R.anim.image_animation));
+                order.setAmount(order.getAmount() + 1);
+                holder.txtAmount.setText("Amount: " + order.getAmount() + "");
             }
+
         });
     }
     public void removeAt(int position) {

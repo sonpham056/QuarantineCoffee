@@ -7,31 +7,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.microwaveteam.quarantinecoffee.R;
-import com.microwaveteam.quarantinecoffee.activities.Bartender.Bar_queueOrder;
 import com.microwaveteam.quarantinecoffee.activities.Bartender.BartenderActivity;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder> {
 
+    String key;
     ArrayList<FeatureHelper> featuredLocations;
     DatabaseReference databaseReference;
-    Bar_queueOrder activity;
+    BartenderActivity activity;
 
-    public ViewQueue(ArrayList<FeatureHelper> featuredLocations, Bar_queueOrder activity) {
+    public ViewQueue(ArrayList<FeatureHelper> featuredLocations, BartenderActivity activity) {
         this.featuredLocations = featuredLocations;
         this.activity = activity;
     }
@@ -50,13 +42,9 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
         holder.btnIsFinish.setImageResource(featuredHelpersClass.image2);
         holder.txtAmount.setText(featuredHelpersClass.amount);
         holder.txtName.setText(featuredHelpersClass.productName);
+        holder.txtProductType.setText(featuredHelpersClass.productType);
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
-        holder.btnIsFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.btnIsFinishClicked(view,databaseReference,featuredHelpersClass);
-            }
-        });
+        holder.btnIsFinish.setOnClickListener(view -> holder.btnIsFinishClicked(view,databaseReference,featuredHelpersClass,featuredHelpersClass.getKey()));
     }
 
     @Override
@@ -66,7 +54,7 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
 
     public class FeaturedViewHolder extends RecyclerView.ViewHolder {
         ImageView btnIsFinish;
-        TextView txtName, txtAmount, txtTable;
+        TextView txtName, txtAmount, txtTable, txtProductType;
         public FeaturedViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -74,18 +62,12 @@ public class ViewQueue extends RecyclerView.Adapter<ViewQueue.FeaturedViewHolder
             txtName = itemView.findViewById(R.id.txt_order_ProductName);
             txtAmount = itemView.findViewById(R.id.txt_order_amount);
             txtTable = itemView.findViewById(R.id.txt_order_table);
+            txtProductType = itemView.findViewById(R.id.txt_order_product_type);
             itemView.bringToFront();
         }
 
-        private void btnIsFinishClicked(View view, DatabaseReference databaseReference, FeatureHelper featuredHelpersClass) {
-           //TODO: click finish?? - chịu r
-
-//            System.out.println("-------------featuredHelpersClass" + featuredHelpersClass.table);
-//            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-//                    .format(new Date());
-//            Query check = databaseReference.child(currentDate).orderByChild("table")
-//                    .equalTo(featuredHelpersClass.table.charAt(featuredHelpersClass.table.length() - 1));
-
+        private void btnIsFinishClicked(View view, DatabaseReference databaseReference, FeatureHelper featuredHelpersClass, String key) {
+            BartenderActivity.alertDialogAndRepush("Finish Yet?","Confirm finish",key);
         }
     }
 }
