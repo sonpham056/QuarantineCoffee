@@ -1,6 +1,8 @@
 package com.microwaveteam.quarantinecoffee.models;
 
-public class Promotion {
+import java.io.Serializable;
+
+public class Promotion implements Serializable {
     private String promotionName;
     private int promotion;
     private String start;

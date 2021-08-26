@@ -2,6 +2,7 @@ package com.microwaveteam.quarantinecoffee.Helper;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.microwaveteam.quarantinecoffee.R;
+import com.microwaveteam.quarantinecoffee.activities.Manager.ListProductActivity;
 import com.microwaveteam.quarantinecoffee.activities.Manager.PromotionActivity;
 import com.microwaveteam.quarantinecoffee.models.Promotion;
 
@@ -50,7 +52,9 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.ItemHolder
         holder.textName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                Intent intent = new Intent(activity.getApplicationContext(), ListProductActivity.class);
+                intent.putExtra("textName", holder.textName.getText().toString());
+                activity.startActivity(intent);
             }
         });
     }
@@ -76,19 +80,23 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.ItemHolder
 
             itemView.bringToFront();
 
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    btnAddClicked(view);
+                }
+            });
+
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     btnDeleteClick(v);
                 }
             });
+        }
 
-            btnAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        private void btnAddClicked(View view){
 
-                }
-            });
         }
 
         private void btnDeleteClick(View v) {
