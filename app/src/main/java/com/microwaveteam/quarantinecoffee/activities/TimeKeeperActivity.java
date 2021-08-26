@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -50,7 +51,9 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
     DatabaseReference myRef;
     ImageView imgWatch;
 
+    Activity context;
     ArrayList<TimeKeeper> listKeeper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +61,9 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
         timeKeeper = new TimeKeeper();
         binding();
 
-        if(preferences.getInt("isStart", 0) == 1){
+        if (preferences.getInt("isStart", 0) == 1) {
             imgWatch.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             imgWatch.setVisibility(View.INVISIBLE);
         }
 
@@ -74,26 +77,31 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
                 .getReference("TimeKeeper")
                 .child(userNameLogging);
 
-        Query query = myRef.orderByChild("date");
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot ds : snapshot.getChildren()) {
-//                    TimeKeeper data = ds.getValue(TimeKeeper.class);
-//                    listKeeper.add(data);
-//                }
-//                adapter = new TimeKeeperAdapter(listKeeper);
-//                lvShowTime.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        //Query query = myRef.orderByChild("date");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listKeeper.clear();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    System.out.println("snapshot = " + snapshot.getRef().getPath());
+                    TimeKeeper data = ds.getValue(TimeKeeper.class);
+                    listKeeper.add(data);
+                }
+                adapter = new TimeKeeperAdapter(listKeeper, context);
+                lvShowTime.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void binding() {
+        context = this;
         userNameLogging = getIntent().getStringExtra("userNameInTimeKeeper");
         imgWatch = findViewById(R.id.img_watch);
         btnStart = findViewById(R.id.btnStart);
@@ -103,6 +111,7 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
         txtUserNameLogging_timeKeeper.setText("Hello: " + userNameLogging);
         currentDate = Calendar.getInstance().getTime();
 
+        listKeeper = new ArrayList<>();
         preferences = getPreferences(Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -111,13 +120,13 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         if (view == btnEnd) {
-            if(preferences.getInt("isStart",0) == 1){
+            if (preferences.getInt("isStart", 0) == 1) {
                 imgWatch.setVisibility(View.INVISIBLE);
                 currentTime = Calendar.getInstance().getTime();
                 timeKeeper.setTimeEnd(formatToString(currentTime, "HH:mm a"));
-                timeKeeper.setTimeStart(preferences.getString("TimeStart",null));
+                timeKeeper.setTimeStart(preferences.getString("TimeStart", null));
                 timeKeeper.setUserName(userNameLogging);
-                timeKeeper.setDate(formatToString(currentDate,"dd-MM-yy"));
+                timeKeeper.setDate(formatToString(currentDate, "dd-MM-yy"));
                 myRef = FirebaseDatabase.getInstance()
                         .getReference("TimeKeeper")
                         .child(userNameLogging)
@@ -137,9 +146,9 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
         } else if (view == btnStart) {
             imgWatch.setVisibility(View.VISIBLE);
             currentTime = Calendar.getInstance().getTime();
-            editor.putString("userNameLogging",userNameLogging);
-            editor.putString("TimeStart",formatToString(currentTime, "HH:mm a"));
-            editor.putInt("isStart",1);
+            editor.putString("userNameLogging", userNameLogging);
+            editor.putString("TimeStart", formatToString(currentTime, "HH:mm a"));
+            editor.putInt("isStart", 1);
             editor.commit();
         }
     }
@@ -157,25 +166,8 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
 
                 System.out.println("t = " + timeKeeper.getTimeEnd());
 
-                try {
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                calculate(timeKeeper.getTimeStart(),timeKeeper.getTimeEnd());
 
-                    Date date1 = simpleDateFormat.parse(timeKeeper.getTimeStart());
-
-                    Date date2 = simpleDateFormat.parse(timeKeeper.getTimeEnd());
-                    long difference = date2.getTime() - date1.getTime();
-                    int days = (int) (difference / (1000 * 60 * 60 * 24));
-                    int hours = (int) ((difference - (1000 * 60 * 60 * 24 * days)) / (1000 * 60 * 60));
-                    int min = (int) (difference - (1000 * 60 * 60 * 24 * days) - (1000 * 60 * 60 * hours))
-                            / (1000 * 60);
-                    hours = (hours < 0 ? -hours : hours);
-                    Log.i("======= Hours worked", " :: " + hours + " :: " + min);
-                    Log.i("======= TimeEnd", " :: " + timeKeeper.getTimeEnd());
-                    Log.i("======= TimeStart", " :: " + timeKeeper.getTimeStart());
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
             }
 
             @Override
@@ -183,6 +175,30 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
+    }
+
+    public static String calculate(String timeStart, String timeEnd) {
+        String result = "";
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+
+            Date date1 = simpleDateFormat.parse(timeStart);
+
+            Date date2 = simpleDateFormat.parse(timeEnd);
+            long difference = date2.getTime() - date1.getTime();
+            int days = (int) (difference / (1000 * 60 * 60 * 24));
+            int hours = (int) ((difference - (1000 * 60 * 60 * 24 * days)) / (1000 * 60 * 60));
+            int min = (int) (difference - (1000 * 60 * 60 * 24 * days) - (1000 * 60 * 60 * hours))
+                    / (1000 * 60);
+            hours = (hours < 0 ? -hours : hours);
+            Log.i("======= Hours worked", " :: " + hours + " :: " + min);
+            Log.i("======= TimeEnd", " :: " + timeEnd);
+            Log.i("======= TimeStart", " :: " + timeStart);
+            result = hours + "h:" + min + "m";
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private String formatToString(Date newDate, String pattern) {
