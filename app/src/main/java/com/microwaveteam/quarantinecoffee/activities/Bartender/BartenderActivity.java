@@ -31,6 +31,7 @@ import com.microwaveteam.quarantinecoffee.Helper.FeatureHelper;
 import com.microwaveteam.quarantinecoffee.Helper.ViewQueue;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.LoginActivity;
+import com.microwaveteam.quarantinecoffee.activities.TimeKeeperActivity;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 import com.microwaveteam.quarantinecoffee.models.Order;
 
@@ -50,6 +51,7 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
     ViewQueue adapter;
     ArrayList<FeatureHelper> listFeatures;
     static String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,7 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
     }
 
     private void binding(String key) {
+        userName = getIntent().getStringExtra("UserNameLogged");
         //init database
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("OrderQueue").child(currentDate);
         Query checkOrder = myRef.orderByChild("table");
@@ -146,7 +149,8 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
                             "" + orderData.getTable()
                             ,"" + productName
                             ,"SL: " + amount
-                            ,orderData.getKey()));
+                            ,"" + orderData.getProductType(),
+                            orderData.getKey()));
         }
         adapter.notifyDataSetChanged();
     }
@@ -195,7 +199,9 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
             case R.id.help_navItem_profile:
                 //TODO: excuse me
             case R.id.help_navItem_timekeeper:
-                //TODO: excuse me
+                Intent timeKeeperIntent = new Intent(this, TimeKeeperActivity.class);
+                timeKeeperIntent.putExtra("userNameInTimeKeeper",userName);
+                startActivity(timeKeeperIntent);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

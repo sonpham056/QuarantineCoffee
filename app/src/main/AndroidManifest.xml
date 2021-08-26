@@ -13,6 +13,9 @@
             android:name=".activities.Manager.ShowProductInStatisticalActivity"
             android:exported="true" />
         <activity
+            android:name=".activities.TimeKeeperActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.Manager.StatisticalActivity"
             android:exported="true" />
         <activity

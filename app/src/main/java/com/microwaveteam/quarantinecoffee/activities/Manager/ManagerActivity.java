@@ -15,12 +15,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.LoginActivity;
+import com.microwaveteam.quarantinecoffee.activities.TimeKeeperActivity;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 
 public class ManagerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Button btnManageProduct, btnManageStaff, btnStatistical;
+    private String userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ public class ManagerActivity extends AppCompatActivity implements NavigationView
     }
 
     private void bind(){
+        userName = getIntent().getStringExtra("UserNameLogged");
         btnManageProduct = findViewById(R.id.btnManageProduct);
         btnManageStaff = findViewById(R.id.btnManageEmployee);
         btnStatistical = findViewById(R.id.btnStatistical);
@@ -76,7 +80,9 @@ public class ManagerActivity extends AppCompatActivity implements NavigationView
             case R.id.help_navItem_profile:
                 //TODO: excuse me
             case R.id.help_navItem_timekeeper:
-                //TODO: excuse me
+                Intent timeKeeperIntent = new Intent(this, TimeKeeperActivity.class);
+                timeKeeperIntent.putExtra("userNameInTimeKeeper",userName);
+                startActivity(timeKeeperIntent);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
