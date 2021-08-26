@@ -12,7 +12,10 @@
         android:text="Promotion Name"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"/>
+        tools:ignore="MissingConstraints"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"/>
 
     <TextView
         android:id="@+id/promotion"

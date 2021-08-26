@@ -87,9 +87,6 @@ public class PromotionActivity extends AppCompatActivity {
             btnEdit.setOnClickListener(view -> {
                 btnEditClicked();
             });
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
             MyAlertDialog.alert(e.getMessage(), this);
@@ -141,7 +138,6 @@ public class PromotionActivity extends AppCompatActivity {
 
                 PromotionDAO.addPromotion(promotion, this);
                 showPromotion();
-
             }
         } catch (Exception e){
             e.printStackTrace();

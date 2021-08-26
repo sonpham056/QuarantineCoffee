@@ -5,10 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.microwaveteam.quarantinecoffee.R;
@@ -16,13 +14,16 @@ import com.microwaveteam.quarantinecoffee.activities.Waiter.MainWaiterFragment;
 import com.microwaveteam.quarantinecoffee.models.Product;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductItemHolder> {
     MainWaiterFragment fragWaiter;
     ArrayList<Product> productList;
+    Calendar calendar = Calendar.getInstance();
 
     public ProductRecyclerViewAdapter(MainWaiterFragment fragWaiter, ArrayList<Product> productList) {
         this.fragWaiter = fragWaiter;
@@ -49,7 +50,22 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             holder.img.setImageResource(R.drawable.image_coffe_capuchino);
         }
 
-        //holder.txtPromotion.setText(product.getPromotion);
+        if (product.getPromotion() != null){
+            try {
+                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(product.getPromotion().getStart());
+                Date dateNow = new Date();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                if(simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) >= 0
+                    && simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) <= 0){
+                    holder.txtPromotion.setText("Promotion" + product.getPromotion().getPromotionName());
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     @Override
