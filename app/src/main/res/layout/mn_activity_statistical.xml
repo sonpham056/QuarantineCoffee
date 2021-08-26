@@ -43,11 +43,11 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listview_mn_statisical"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_mn_statistical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".8"/>
+        android:layout_weight=".8" />
 
     <LinearLayout
         android:layout_width="match_parent"

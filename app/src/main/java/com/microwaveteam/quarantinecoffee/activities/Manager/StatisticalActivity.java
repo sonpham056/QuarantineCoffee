@@ -2,10 +2,12 @@ package com.microwaveteam.quarantinecoffee.activities.Manager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,8 +22,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.microwaveteam.quarantinecoffee.Helper.StatisticRecyclerAdapter;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.models.Bill;
+import com.microwaveteam.quarantinecoffee.models.Product;
 import com.microwaveteam.quarantinecoffee.serviceclasses.MyAlertDialog;
 
 import java.text.ParseException;
@@ -37,9 +41,9 @@ public class StatisticalActivity extends AppCompatActivity {
     EditText etFromDate;
     EditText etToDate;
     TextView txtResult;
-    ListView listView;
+    RecyclerView recyclerView;
     Button btnResult;
-    ArrayAdapter<String> adapter;
+    StatisticRecyclerAdapter adapter;
     ArrayList<String> list;
 
     DatabaseReference db;
@@ -52,11 +56,14 @@ public class StatisticalActivity extends AppCompatActivity {
         etToDate = findViewById(R.id.txt_mn_statistical_date_to);
         btnResult = findViewById(R.id.btn_mn_bill_result_statistical);
         txtResult = findViewById(R.id.txt_mn_result_statistical);
-        listView = findViewById(R.id.listview_mn_statisical);
+        recyclerView = findViewById(R.id.recycler_mn_statistical);
 
         list = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, list);
-        listView.setAdapter(adapter);
+        adapter = new StatisticRecyclerAdapter(list, this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation()));
+        recyclerView.setAdapter(adapter);
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -119,7 +126,7 @@ public class StatisticalActivity extends AppCompatActivity {
                                         if (dataBill.getKey().compareTo("Bill") == 0) {
                                             Bill bill = dataBill.getValue(Bill.class);
                                             sum += bill.getSum();
-                                            list.add("Name: " + bill.getWaiterName() + " | " + "Sum: " + bill.getSum() + " | " + bill.getDate());
+                                            list.add(bill.getWaiterName() + "," + bill.getSum() + "," + bill.getDate() + "," + dataBillId.getKey());
                                         }
                                     }
                                 }
