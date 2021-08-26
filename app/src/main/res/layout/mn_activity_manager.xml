@@ -63,10 +63,5 @@
                 android:textSize="25sp"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
-
-
-
-
-
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

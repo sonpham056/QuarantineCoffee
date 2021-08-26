@@ -29,6 +29,11 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         this.productList = productList;
     }
 
+    public void updateData(ArrayList<Product> list) {
+        productList = list;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ProductRecyclerViewAdapter.ProductItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
