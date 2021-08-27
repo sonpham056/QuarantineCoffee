@@ -1,11 +1,14 @@
 package com.microwaveteam.quarantinecoffee.Helper;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,21 +66,49 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
         holder.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db = FirebaseDatabase.getInstance().getReference("Promotion");
-                db.child(promotion).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Promotion promotion1 = snapshot.getValue(Promotion.class);
-                        holder.txtPromotion.setText("Promotion: " + promotion1.getPromotionName());
-                        product.setPromotion(promotion1);
-                        db1 = FirebaseDatabase.getInstance().getReference("Product");
-                        db1.child(product.getCategory()).child(product.getProductName()).setValue(product);
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                if(product.getPromotion() == null){
+                    db = FirebaseDatabase.getInstance().getReference("Promotion");
+                    db.child(promotion).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Promotion promotion1 = snapshot.getValue(Promotion.class);
+                            holder.txtPromotion.setText("Promotion: " + promotion1.getPromotionName());
+                            product.setPromotion(promotion1);
+                            db1 = FirebaseDatabase.getInstance().getReference("Product");
+                            db1.child(product.getCategory()).child(product.getProductName()).setValue(product);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
+                        }
+                    });
+                }
+                else
+                    Toast.makeText(view.getContext(), "Promotion already exists ", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                db1 = FirebaseDatabase.getInstance().getReference("Product");
+                                db1.child(product.getCategory()).child(product.getProductName())
+                                        .child("promotion").removeValue();
+                                Toast.makeText(view.getContext(), "Successfully deleted", Toast.LENGTH_SHORT).show();
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
                     }
-                });
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
             }
         });
     }
@@ -95,6 +126,7 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
         TextView txtProductType;
         ImageView img;
         ImageButton btnAdd;
+        ImageButton btnDel;
 
         public ProductItemHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,6 +138,7 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
             txtProductType = itemView.findViewById(R.id.txt_mn_recycler_productType);
             img = itemView.findViewById(R.id.imageview_mn_products);
             btnAdd = itemView.findViewById(R.id.imageButton_mn_addProduct);
+            btnDel = itemView.findViewById(R.id.imageButton_mn_deletePromotion);
             itemView.setClickable(true);
         }
     }

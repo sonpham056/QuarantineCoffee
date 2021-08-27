@@ -49,12 +49,22 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.ItemHolder
         holder.textName.setText(promotion.getPromotionName());
         holder.text.setText(promotion.getPromotion() + "");
 
-        holder.textName.setOnClickListener(new View.OnClickListener() {
+        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity.getApplicationContext(), ListProductActivity.class);
                 intent.putExtra("textName", holder.textName.getText().toString());
                 activity.startActivity(intent);
+            }
+        });
+
+        holder.textName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Promotion Name: " + promotion.getPromotionName()
+                        + "\nPromotion: " + promotion.getPromotion() + "\nStart: " + promotion.getStart()
+                        + "    -   End: " + promotion.getEnd()).show();
             }
         });
     }
@@ -80,23 +90,12 @@ public class ViewPromotion extends RecyclerView.Adapter<ViewPromotion.ItemHolder
 
             itemView.bringToFront();
 
-            btnAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    btnAddClicked(view);
-                }
-            });
-
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     btnDeleteClick(v);
                 }
             });
-        }
-
-        private void btnAddClicked(View view){
-
         }
 
         private void btnDeleteClick(View v) {
