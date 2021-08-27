@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Manager.EmployeesTimeKeeperActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <Spinner
+        android:id="@+id/spinner_mn_name_employees_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"/>
+
+    <EditText
+        android:id="@+id/mn_txt_month_employees_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Choose a month"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="" />
+
+    <ListView
+        android:id="@+id/listview_mn_employees_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".6"/>
+
+    <TextView
+        android:id="@+id/txt_mn_worked_hour_employees_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:textSize="20sp"
+        android:text=""
+        android:hint="This is where the total of worked hours go"/>
+
+    <Button
+        android:id="@+id/btn_mn_check_employees_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:text="Check" />
+</LinearLayout>
