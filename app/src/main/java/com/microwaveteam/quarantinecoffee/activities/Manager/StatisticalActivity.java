@@ -144,14 +144,14 @@ public class StatisticalActivity extends AppCompatActivity {
 
     private void updateLabel() {
         String myFormat = "dd-MM-yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
 
         etFromDate.setText(sdf.format(myCalendar.getTime()));
     }
 
     private void updateLabel2() {
         String myFormat = "dd-MM-yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
 
         etToDate.setText(sdf.format(myCalendar1.getTime()));
     }
