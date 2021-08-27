@@ -36,16 +36,21 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Price: " />
+
+            <TextView
                 android:id="@+id/txt_w_price_recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingLeft="10dp"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/txt_w_sale_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:textColor="#FF0000"/>
         </LinearLayout>
 
         <TextView

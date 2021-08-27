@@ -1,5 +1,6 @@
 package com.microwaveteam.quarantinecoffee.Helper;
 
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +15,22 @@ import com.microwaveteam.quarantinecoffee.activities.Waiter.MainWaiterFragment;
 import com.microwaveteam.quarantinecoffee.models.Product;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductItemHolder> {
     MainWaiterFragment fragWaiter;
     ArrayList<Product> productList;
-    Calendar calendar = Calendar.getInstance();
 
     public ProductRecyclerViewAdapter(MainWaiterFragment fragWaiter, ArrayList<Product> productList) {
         this.fragWaiter = fragWaiter;
         this.productList = productList;
+    }
+
+    public void updateData(ArrayList<Product> list) {
+        productList = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -49,23 +52,17 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         } else {
             holder.img.setImageResource(R.drawable.image_coffe_capuchino);
         }
-
         if (product.getPromotion() != null){
-            try {
-                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(product.getPromotion().getStart());
-                Date dateNow = new Date();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                if(simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) >= 0
-                    && simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) <= 0){
-                    holder.txtPromotion.setText("Promotion" + product.getPromotion().getPromotionName());
-                }
-
-            } catch (ParseException e) {
-                e.printStackTrace();
+            Date dateNow = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            if(simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) >= 0
+                    && simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getEnd()) <= 0){
+                holder.txtPromotion.setText("Promotion" + product.getPromotion().getPromotionName());
+                holder.txtPrice.setPaintFlags(holder.txtPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                Long price = product.getPrice() - product.getPrice()*product.getPromotion().getPromotion()/100;
+                holder.txtSale.setText( price + "");
             }
-
         }
-
     }
 
     @Override
@@ -80,6 +77,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         TextView txtPromotion;
         TextView txtProductType;
         ImageView img;
+        TextView txtSale;
         public ProductItemHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -89,6 +87,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             txtPromotion = itemView.findViewById(R.id.txt_w_promotion_recycler_view);
             txtProductType = itemView.findViewById(R.id.txt_w_recycler_producttype);
             img = itemView.findViewById(R.id.imageview_w_image_recycler_view);
+            txtSale = itemView.findViewById(R.id.txt_w_sale_recycler_view);
             itemView.setClickable(true);
             itemView.setOnClickListener(this);
         }

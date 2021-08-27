@@ -1,7 +1,6 @@
 package com.microwaveteam.quarantinecoffee.activities.Manager;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,13 +66,11 @@ public class ListProductActivity extends AppCompatActivity {
                     for (DataSnapshot data : snapshot.getChildren()) {
                         String type = data.getKey();
                         listType.add(type);
-                        Log.i("line105waiterfrag", type);
                         for (DataSnapshot data2 : data.getChildren()) {
                             Product product = data2.getValue(Product.class);
                             listProducts.add(product);
                         }
                     }
-                    Log.i("line124waiterfrag", listProducts.size() + "");
                     adapter = new ViewProductAdapter(ListProductActivity.this, listProducts, promotion);
                     recyclerView.setAdapter(adapter);
                 }

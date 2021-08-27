@@ -10,7 +10,6 @@ import android.net.Uri;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -28,24 +27,15 @@ import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.models.Product;
 import com.squareup.picasso.Picasso;
 
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
+
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.microwaveteam.quarantinecoffee.R;
-import com.microwaveteam.quarantinecoffee.models.Product;
 
 public class ProductActivity extends AppCompatActivity {
     private final int REQUEST_CODE = 1;
@@ -57,9 +47,7 @@ public class ProductActivity extends AppCompatActivity {
     Button btnFind;
     EditText txt_mn_ProductName,txt_mn_Price,txt_mn_ProductAmount;
     Spinner sp_mn_Category;
-    String arr[]={ "Trà sữa", "Cà phê", "Nước ngọt", "Bánh", "Hạt"};
     ArrayList<String> productTypeList = new ArrayList<String>();
-    TextView txt_mn_selection_list;
     ImageView imageView;
     Uri imageUri;
 
@@ -154,13 +142,16 @@ public class ProductActivity extends AppCompatActivity {
     }
     //========================================================================================================
     private void btnAddClicked() {
+        if (txt_mn_ProductName.getText().toString().isEmpty() || txt_mn_Price.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Please fill the empty fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
         myRef = FirebaseDatabase.getInstance().getReference("Product");
         Product product = new Product(txt_mn_ProductName.getText().toString(), Long.parseLong(txt_mn_Price.getText().toString())  ,
                 Integer.parseInt(txt_mn_ProductAmount.getText().toString()) , sp_mn_Category.getSelectedItem().toString()
         );
         if (imageUri != null) {
             imageToFireBase(imageUri);
-            product.setImage(imgFireBase.toString());
         }
         myRef.child(product.getCategory()).child(product.getProductName()).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -169,8 +160,8 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void btnAddClickedWithoutSendingImage() {
+    //========================================================================================================
+    private void addProductWithImageToFirebase() {
         myRef = FirebaseDatabase.getInstance().getReference("Product");
         Product product = new Product(txt_mn_ProductName.getText().toString(), Long.parseLong(txt_mn_Price.getText().toString())  ,
                 Integer.parseInt(txt_mn_ProductAmount.getText().toString()) , sp_mn_Category.getSelectedItem().toString()
@@ -180,7 +171,7 @@ public class ProductActivity extends AppCompatActivity {
         }
         myRef.child(product.getCategory()).child(product.getProductName()).setValue(product);
     }
-    //========================================================================================================
+
     private void loadProductTypeList() {
         myRef = FirebaseDatabase.getInstance().getReference("ProductType");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -226,8 +217,8 @@ public class ProductActivity extends AppCompatActivity {
     private void bindToImgFirebase(Uri uri) {
         imgFireBase.delete(0, imgFireBase.length());
         imgFireBase.append(uri.toString());
-        Log.e("ProductActivity", "uri: " + uri.toString() + "\n" + imgFireBase.toString());
-        btnAddClickedWithoutSendingImage();
+        //Log.e("ProductActivity", "uri: " + uri.toString() + "\n" + imgFireBase.toString());
+        addProductWithImageToFirebase();
         Toast.makeText(ProductActivity.this, "Upload image to firebase succeed, path: " + imgFireBase.toString(), Toast.LENGTH_LONG).show();
     }
 

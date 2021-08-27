@@ -195,9 +195,8 @@ public class PromotionActivity extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Promotion data = ds.getValue(Promotion.class);
                     listPromotion.add(data);
-                    String promotionNameDB = data.getPromotionName();
-                    int promotionDB = data.getPromotion();
-                    listFeatures.add(new Promotion(promotionNameDB, promotionDB));
+                    listFeatures.add(new Promotion(data.getPromotionName(), data.getPromotion(),
+                            data.getStart(), data.getEnd()));
                 }
                 adapter = new ViewPromotion(listFeatures, PromotionActivity.this);
                 recyclerViewPromotion.setAdapter(adapter);
