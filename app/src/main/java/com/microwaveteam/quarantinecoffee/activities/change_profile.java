@@ -54,60 +54,56 @@ public class change_profile extends AppCompatActivity {
             }
         });
         btnChange.setOnClickListener(view -> {
-            final String userNameEntered = txtUserName.getText().toString();
-            final String oldPassEntered = txtOldPass.getText().toString();
-            final String newPassEntered = txtNewPass.getText().toString();
-            final String confirmEntered = txtConfirmNewPass.getText().toString();
+            String userNameEntered = txtUserName.getText().toString();
+            String oldPassEntered = txtOldPass.getText().toString();
+            String newPassEntered = txtNewPass.getText().toString();
 
-            changing(passDB, userNameEntered, oldPassEntered, newPassEntered, confirmEntered);
+
+            if(!validate()){
+
+            }else{
+
+                if (!passDB.equals(oldPassEntered)){
+                    txtOldPass.setError("Wrong Pass");
+                }else if(!userNameEntered.equals(userNameLogging)){
+                    txtUserName.setError("Wrong UserName");
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Confirmation");
+                    builder.setMessage("Are u sure bout this?");
+                    builder.setPositiveButton("OK", (dialogInterface, i)
+                            -> myRef.child("password").setValue(newPassEntered, (error, ref)
+                            -> Toast.makeText(context, "Set value success", Toast.LENGTH_LONG).show()));
+                    builder.setNegativeButton("No", (dialogInterface, i) -> {
+                        return;
+                    });
+                    builder.show();
+                }
+            }
         });
 
     }
 
-    private void changing(String passDB, String userNameEntered, String oldPassEntered, String newPassEntered, String confirmEntered) {
-        if (passDB == oldPassEntered && validate(userNameEntered, newPassEntered, confirmEntered) == true) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Confirmation");
-            builder.setMessage("Are u sure bout this?");
-            builder.setPositiveButton("OK", (dialogInterface, i)
-                    -> myRef.child("password").setValue(newPassEntered, (error, ref)
-                    -> Toast.makeText(context, "Set value success", Toast.LENGTH_LONG).show()));
-            builder.setNegativeButton("No", (dialogInterface, i) -> {
-                return;
-            });
-            builder.show();
-        } else {
-            Toast.makeText(context, ">>>>>>>>>>>?????????", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private boolean validate(String userNameEntered, String newPassEntered, String confirmEntered) {
-        if (userNameEntered != userNameLogging) {
-            txtUserName.setError("???");
-            txtUserName.setFocusable(true);
-            return false;
-        } else if (txtOldPass.getText().toString().isEmpty()) {
-            txtOldPass.setError("Can't null");
-            txtOldPass.setFocusable(true);
-            return false;
-        } else if (txtNewPass.getText().toString().isEmpty()) {
-            txtNewPass.setError("Can't null");
-            txtNewPass.setFocusable(true);
-            return false;
-        } else if (txtUserName.getText().toString().isEmpty()) {
-            txtUserName.setError("Can't null");
-            txtUserName.setFocusable(true);
-            return false;
-        } else if (txtConfirmNewPass.getText().toString().isEmpty()) {
-            txtConfirmNewPass.setError("Can't null");
-            txtConfirmNewPass.setFocusable(true);
-            return false;
-        } else if (newPassEntered != confirmEntered) {
-            txtConfirmNewPass.setError("Doesn't match");
-            txtConfirmNewPass.setFocusable(true);
+    private boolean validate() {
+        if(!txtConfirmNewPass.getText().toString().equals(txtNewPass.getText().toString())){
+            txtConfirmNewPass.setError("Doesn't Match");
+            txtNewPass.setError("Doesn't Match");
             return false;
         }
-
+        if(txtUserName.getText().toString().isEmpty()){
+            txtUserName.setError("Field cannot be empty");
+            return false;
+        }if(txtOldPass.getText().toString().isEmpty()){
+            txtOldPass.setError("Field cannot be empty");
+            return false;
+        }if(txtNewPass.getText().toString().isEmpty()){
+            txtNewPass.setError("Field cannot be empty");
+            return false;
+        }if(txtConfirmNewPass.getText().toString().isEmpty()){
+            txtConfirmNewPass.setError("Field cannot be empty");
+            return false;
+        }
         return true;
     }
 
