@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.MainWaiterFragment;
 import com.microwaveteam.quarantinecoffee.models.Product;
@@ -44,7 +46,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     public void onBindViewHolder(@NonNull ProductRecyclerViewAdapter.ProductItemHolder holder, int position) {
         Product product = productList.get(position);
         holder.txtName.setText(product.getProductName());
-        holder.txtPrice.setText("Price: " + product.getPrice() + "");
+        holder.txtPrice.setText(product.getPrice() + "");
         holder.txtAmount.setText("Amount: " + product.getAmount() + "");
         holder.txtProductType.setText(product.getCategory());
         if (product.getImage() != null) {
@@ -55,12 +57,18 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         if (product.getPromotion() != null){
             Date dateNow = new Date();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            if(simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) >= 0
-                    && simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getEnd()) <= 0){
-                holder.txtPromotion.setText("Promotion" + product.getPromotion().getPromotionName());
-                holder.txtPrice.setPaintFlags(holder.txtPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                Long price = product.getPrice() - product.getPrice()*product.getPromotion().getPromotion()/100;
-                holder.txtSale.setText( price + "");
+            if(simpleDateFormat.format(new Date()).compareTo(product.getPromotion().getEnd()) > 0){
+                DatabaseReference db = FirebaseDatabase.getInstance().getReference("Product");
+                db.child(product.getCategory()).child(product.getProductName()).child("promotion").removeValue();
+            }
+            else{
+                if(simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) >= 0
+                        && simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getEnd()) <= 0){
+                    holder.txtPromotion.setText("Promotion" + product.getPromotion().getPromotionName());
+                    holder.txtPrice.setPaintFlags(holder.txtPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    Long price = product.getPrice() - product.getPrice()*product.getPromotion().getPromotion()/100;
+                    holder.txtSale.setText( price + "");
+                }
             }
         }
     }

@@ -24,7 +24,9 @@ import com.microwaveteam.quarantinecoffee.models.Product;
 import com.microwaveteam.quarantinecoffee.models.Promotion;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.ProductItemHolder> {
     ArrayList<Product> productList;
@@ -60,7 +62,13 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
         }
 
         if(product.getPromotion() != null){
-            holder.txtPromotion.setText("Promotion: " + product.getPromotion().getPromotionName());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            if(simpleDateFormat.format(new Date()).compareTo(product.getPromotion().getEnd()) > 0){
+                db1 = FirebaseDatabase.getInstance().getReference("Product");
+                db1.child(product.getCategory()).child(product.getProductName()).child("promotion").removeValue();
+            }
+            else
+                holder.txtPromotion.setText("Promotion: " + product.getPromotion().getPromotionName());
         }
 
         holder.btnAdd.setOnClickListener(new View.OnClickListener() {
