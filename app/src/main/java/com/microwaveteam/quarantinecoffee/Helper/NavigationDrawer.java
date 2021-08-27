@@ -39,7 +39,7 @@ public class NavigationDrawer implements NavigationView.OnNavigationItemSelected
             case R.id.help_navItem_exit:
                 //TODO: excuse me
                 break;
-            case R.id.help_navItem_profile:
+            case R.id.help_navItem_change_profile:
                 //TODO: excuse me
             case R.id.help_navItem_timekeeper:
                 //TODO: excuse me

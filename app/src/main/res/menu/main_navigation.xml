@@ -4,13 +4,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/help_navItem_profile"
+            android:id="@+id/help_navItem_bill_history"
             android:icon="@drawable/avt"
             android:title="Bill history"/>
         <item
             android:id="@+id/help_navItem_timekeeper"
             android:icon="@drawable/ic_action_timekeeping"
             android:title="Time Keeper" />
+        <item
+            android:id="@+id/help_navItem_change_profile"
+            android:icon="@drawable/ic_action_exit"
+            android:title="Change Profile" />
         <item
             android:id="@+id/help_navItem_exit"
             android:icon="@drawable/ic_action_exit"

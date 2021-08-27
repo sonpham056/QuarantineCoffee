@@ -33,6 +33,7 @@ import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.LoginActivity;
 import com.microwaveteam.quarantinecoffee.activities.TimeKeeperActivity;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
+import com.microwaveteam.quarantinecoffee.activities.change_profile;
 import com.microwaveteam.quarantinecoffee.models.Order;
 
 import java.text.SimpleDateFormat;
@@ -196,8 +197,11 @@ public class BartenderActivity extends AppCompatActivity implements NavigationVi
             case R.id.help_navItem_exit:
                 finish();
                 break;
-            case R.id.help_navItem_profile:
-                //TODO: excuse me
+            case R.id.help_navItem_change_profile:
+                Intent intent = new Intent(this, change_profile.class);
+                intent.putExtra("userNameInChangeProfile",userName);
+                startActivity(intent);
+                break;
             case R.id.help_navItem_timekeeper:
                 Intent timeKeeperIntent = new Intent(this, TimeKeeperActivity.class);
                 timeKeeperIntent.putExtra("userNameInTimeKeeper",userName);

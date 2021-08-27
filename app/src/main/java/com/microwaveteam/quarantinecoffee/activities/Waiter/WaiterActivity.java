@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.LoginActivity;
 import com.microwaveteam.quarantinecoffee.activities.TimeKeeperActivity;
+import com.microwaveteam.quarantinecoffee.activities.change_profile;
 import com.microwaveteam.quarantinecoffee.models.Order;
 
 import java.text.SimpleDateFormat;
@@ -119,7 +120,7 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
                 intent.putExtra("EXIT", true);
                 startActivity(intent);
                 break;
-            case R.id.help_navItem_profile:
+            case R.id.help_navItem_bill_history:
                 Intent intentBillHis = new Intent(this, BillHistoryActivity.class);
                 startActivity(intentBillHis);
                 break;
@@ -127,6 +128,11 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
                 Intent timeKeeperIntent = new Intent(this, TimeKeeperActivity.class);
                 timeKeeperIntent.putExtra("userNameInTimeKeeper",userName);
                 startActivity(timeKeeperIntent);
+            case R.id.help_navItem_change_profile:
+                Intent intent2 = new Intent(this, change_profile.class);
+                intent2.putExtra("userNameInChangeProfile",userName);
+                startActivity(intent2);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

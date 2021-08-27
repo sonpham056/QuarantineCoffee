@@ -7,13 +7,12 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\quynh\.android\avd\Pixel_5_API_28.avd" />
-            <value value="$PROJECT_DIR$/../.android/avd/Pixel_3a_XL_API_28_3.avd" />
+            <value value="C:\Users\Phong\.android\avd\Pixel_3a_API_27.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2021-08-09T07:38:31.828894700Z" />
+    <timeTargetWasSelectedWithDropDown value="2021-08-27T05:07:37.234214400Z" />
     <targetsSelectedWithDialog>
       <Target>
         <type value="QUICK_BOOT_TARGET" />
