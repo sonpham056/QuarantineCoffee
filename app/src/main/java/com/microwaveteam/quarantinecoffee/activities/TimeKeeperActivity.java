@@ -61,7 +61,7 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
         timeKeeper = new TimeKeeper();
         binding();
 
-        if (preferences.getInt("isStart", 0) == 1) {
+        if (preferences.getString(userNameLogging, null) != null) {
             imgWatch.setVisibility(View.VISIBLE);
         } else {
             imgWatch.setVisibility(View.INVISIBLE);
@@ -120,11 +120,11 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         if (view == btnEnd) {
-            if (preferences.getInt("isStart", 0) == 1) {
+            if (preferences.getString(userNameLogging, null) != null) {
                 imgWatch.setVisibility(View.INVISIBLE);
                 currentTime = Calendar.getInstance().getTime();
                 timeKeeper.setTimeEnd(formatToString(currentTime, "HH:mm a"));
-                timeKeeper.setTimeStart(preferences.getString("TimeStart", null));
+                timeKeeper.setTimeStart(preferences.getString(userNameLogging, null));
                 timeKeeper.setUserName(userNameLogging);
                 timeKeeper.setDate(formatToString(currentDate, "dd-MM-yy"));
                 myRef = FirebaseDatabase.getInstance()
@@ -135,7 +135,7 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
 
                 test();
 
-                editor.remove("TimeStart");
+                editor.remove(userNameLogging);
                 editor.remove("userNameLogging");
                 editor.remove("isStart");
                 editor.commit();
@@ -144,10 +144,11 @@ public class TimeKeeperActivity extends AppCompatActivity implements View.OnClic
                 return;
             }
         } else if (view == btnStart) {
+
             imgWatch.setVisibility(View.VISIBLE);
             currentTime = Calendar.getInstance().getTime();
             editor.putString("userNameLogging", userNameLogging);
-            editor.putString("TimeStart", formatToString(currentTime, "HH:mm a"));
+            editor.putString(userNameLogging, formatToString(currentTime, "HH:mm a"));
             editor.putInt("isStart", 1);
             editor.commit();
         }
