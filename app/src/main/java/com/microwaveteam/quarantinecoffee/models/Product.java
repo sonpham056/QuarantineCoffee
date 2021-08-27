@@ -8,12 +8,21 @@ public class Product implements Serializable {
     private int amount;
     private String category;
     private String image;
+    private Promotion promotion;
 
     public Product(String productName, long price, int amount, String category) {
         this.productName = productName;
         this.price = price;
         this.amount = amount;
         this.category = category;
+    }
+
+    public Product(String productName, long price, int amount, String category, Promotion promotion) {
+        this.productName = productName;
+        this.price = price;
+        this.amount = amount;
+        this.category = category;
+        this.promotion = promotion;
     }
 
     public Product() {
@@ -58,6 +67,13 @@ public class Product implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
+    }
 }
 

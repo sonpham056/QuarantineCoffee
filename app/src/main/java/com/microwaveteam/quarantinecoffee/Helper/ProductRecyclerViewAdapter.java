@@ -1,24 +1,25 @@
 package com.microwaveteam.quarantinecoffee.Helper;
 
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.microwaveteam.quarantinecoffee.R;
 import com.microwaveteam.quarantinecoffee.activities.Waiter.MainWaiterFragment;
 import com.microwaveteam.quarantinecoffee.models.Product;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductItemHolder> {
     MainWaiterFragment fragWaiter;
@@ -45,7 +46,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     public void onBindViewHolder(@NonNull ProductRecyclerViewAdapter.ProductItemHolder holder, int position) {
         Product product = productList.get(position);
         holder.txtName.setText(product.getProductName());
-        holder.txtPrice.setText("Price: " + product.getPrice() + "");
+        holder.txtPrice.setText(product.getPrice() + "");
         holder.txtAmount.setText("Amount: " + product.getAmount() + "");
         holder.txtProductType.setText(product.getCategory());
         if (product.getImage() != null) {
@@ -53,8 +54,23 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         } else {
             holder.img.setImageResource(R.drawable.image_coffe_capuchino);
         }
-
-        //holder.txtPromotion.setText(product.getPromotion);
+        if (product.getPromotion() != null){
+            Date dateNow = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            if(simpleDateFormat.format(new Date()).compareTo(product.getPromotion().getEnd()) > 0){
+                DatabaseReference db = FirebaseDatabase.getInstance().getReference("Product");
+                db.child(product.getCategory()).child(product.getProductName()).child("promotion").removeValue();
+            }
+            else{
+                if(simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) >= 0
+                        && simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getEnd()) <= 0){
+                    holder.txtPromotion.setText("Promotion" + product.getPromotion().getPromotionName());
+                    holder.txtPrice.setPaintFlags(holder.txtPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    Long price = product.getPrice() - product.getPrice()*product.getPromotion().getPromotion()/100;
+                    holder.txtSale.setText( price + "");
+                }
+            }
+        }
     }
 
     @Override
@@ -69,6 +85,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         TextView txtPromotion;
         TextView txtProductType;
         ImageView img;
+        TextView txtSale;
         public ProductItemHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -78,6 +95,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             txtPromotion = itemView.findViewById(R.id.txt_w_promotion_recycler_view);
             txtProductType = itemView.findViewById(R.id.txt_w_recycler_producttype);
             img = itemView.findViewById(R.id.imageview_w_image_recycler_view);
+            txtSale = itemView.findViewById(R.id.txt_w_sale_recycler_view);
             itemView.setClickable(true);
             itemView.setOnClickListener(this);
         }

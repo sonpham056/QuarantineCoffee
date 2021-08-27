@@ -22,7 +22,7 @@ import com.microwaveteam.quarantinecoffee.activities.change_profile;
 public class ManagerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Button btnManageProduct, btnManageStaff, btnStatistical;
+    Button btnManageProduct, btnManageStaff, btnStatistical, btnEmployeeTime;
     private String userName;
 
     @Override
@@ -49,6 +49,11 @@ public class ManagerActivity extends AppCompatActivity implements NavigationView
             Intent intent = new Intent(this, StatisticalActivity.class);
             startActivity(intent);
         });
+
+        btnEmployeeTime.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EmployeesTimeKeeperActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void bind(){
@@ -56,6 +61,7 @@ public class ManagerActivity extends AppCompatActivity implements NavigationView
         btnManageProduct = findViewById(R.id.btnManageProduct);
         btnManageStaff = findViewById(R.id.btnManageEmployee);
         btnStatistical = findViewById(R.id.btnStatistical);
+        btnEmployeeTime = findViewById(R.id.btnEmployeeTimeKeeper);
         drawerLayout = findViewById(R.id.manager_drawer);
         navigationView = findViewById(R.id.manager_navigation);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(ManagerActivity.this,

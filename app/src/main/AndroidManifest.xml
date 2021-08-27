@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuarantineCoffee">
         <activity
-            android:name=".activities.change_profile"
+            android:name=".activities.Manager.EmployeesTimeKeeperActivity"
             android:exported="true" />
+        <activity android:name=".activities.change_profile"
+            android:exported="true"/>
         <activity
             android:name=".activities.Manager.ShowProductInStatisticalActivity"
             android:exported="true" />
@@ -29,6 +31,9 @@
             android:exported="true" />
         <activity
             android:name=".activities.Waiter.BillHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.Manager.ListProductActivity"
             android:exported="true" />
         <activity
             android:name=".activities.Waiter.TableDetailActivity"
