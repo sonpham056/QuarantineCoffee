@@ -3,6 +3,7 @@ package com.microwaveteam.quarantinecoffee.activities.Waiter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -142,6 +143,7 @@ public class MainWaiterFragment extends Fragment {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         db3 = FirebaseDatabase.getInstance().getReference("OrderQueue").child(currentDate);
 
+        //lay list product de show len recyclerview
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -155,7 +157,6 @@ public class MainWaiterFragment extends Fragment {
                         for (DataSnapshot data2 : data.getChildren()) {
                             Product product = data2.getValue(Product.class);
                             productList.add(product);
-
                         }
                     }
                     Log.i("line124waiterfrag", productList.size() + "");
@@ -170,7 +171,7 @@ public class MainWaiterFragment extends Fragment {
 
             }
         });
-
+        //lay list table de show len spinner
         db2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -191,7 +192,7 @@ public class MainWaiterFragment extends Fragment {
 
             }
         });
-
+        //lay list cac mon an da xac nhan o ban hien tai
         db3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -344,10 +345,20 @@ public class MainWaiterFragment extends Fragment {
     }
 
     public void addToList(int position) {
-        Product p = productList.get(position);
+        Product product = productList.get(position);
+        boolean isSale = false;
+        if (product.getPromotion() != null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            if(simpleDateFormat.format(new Date()).compareTo(product.getPromotion().getStart()) >= 0
+                    && simpleDateFormat.format(new Date()).compareTo(product.getPromotion().getEnd()) <= 0) {
+                isSale = true;
+                Long price = product.getPrice() - (product.getPrice() * product.getPromotion().getPromotion() / 100);
+                product.setPrice(price);
+            }
+        }
         Order order = null;
         for (Order o : tempOrderList) {
-            if (o.getProductName().compareTo(p.getProductName()) == 0 && o.getProductType().compareTo(p.getCategory()) == 0) {
+            if (o.getProductName().compareTo(product.getProductName()) == 0 && o.getProductType().compareTo(product.getCategory()) == 0) {
                 order = o;
                 break;
             }
@@ -360,13 +371,15 @@ public class MainWaiterFragment extends Fragment {
             order.setFinish(false);
             order.setTable(spinner.getSelectedItem().toString());
             order.setDateTime(getDate());
-            order.setProductName(p.getProductName());
+            order.setProductName(product.getProductName());
             order.setAmount(1);
-            order.setProductType(p.getCategory());
-            order.setPrice(p.getPrice());
+            order.setProductType(product.getCategory());
+            order.setPrice(product.getPrice());
             tempOrderList.add(order);
         }
-
+        if (isSale) {
+            product.setPrice((100 * product.getPrice()) / (100 - product.getPromotion().getPromotion()));
+        }
     }
 
     private String getDate() {
