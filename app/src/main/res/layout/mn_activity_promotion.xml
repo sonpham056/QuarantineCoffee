@@ -17,43 +17,50 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
             android:layout_height="match_parent"
             android:text="Promotion Name: "
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:gravity="center"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/txt_mn_PromotionName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".7"
             android:layout_height="match_parent"
             android:textSize="16sp"
             android:hint="Promotion Name"
-            android:layout_marginLeft="20dp"/>
+/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
             android:layout_height="match_parent"
             android:text="Promotion: "
+            android:gravity="center"
             android:textSize="16sp"
             tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/txt_mn_Promotion"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".7"
             android:layout_height="match_parent"
             android:textSize="16sp"
             android:hint="Promotion"
-            android:layout_marginLeft="70dp"/>
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -66,8 +73,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Date Promotion: "
+            android:gravity="center"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"
             android:layout_weight="3"/>
 
         <EditText
@@ -75,16 +82,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3.25"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:hint="Start Promotion"
             android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="~"
-            android:textSize="20sp"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="0.5"/>
 
         <EditText
             android:id="@+id/txt_mn_endPromotion"
@@ -92,29 +95,41 @@
             android:layout_height="wrap_content"
             android:layout_weight="3.25"
             android:hint="End Promotion"
-            android:layout_marginLeft="5dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_marginLeft="10dp"
             android:textSize="16sp"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:weightSum="1">
 
         <Button
             android:id="@+id/btn_mn_PromotionAdd"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_marginLeft="10dp"
             android:layout_height="match_parent"
-            android:text="Add"
-            android:layout_marginLeft="70dp"/>
+            android:text="Add" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".333"
+            android:textSize="16sp"/>
 
         <Button
             android:id="@+id/btn_mn_PromotionEdit"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
             android:layout_height="match_parent"
-            android:text="Edit"
-            android:layout_marginLeft="70dp"/>
+            android:text="Edit" />
 
     </LinearLayout>
 

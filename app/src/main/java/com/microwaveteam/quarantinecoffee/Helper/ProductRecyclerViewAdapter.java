@@ -64,10 +64,10 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             else{
                 if(simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getStart()) >= 0
                         && simpleDateFormat.format(dateNow).compareTo(product.getPromotion().getEnd()) <= 0){
-                    holder.txtPromotion.setText("Promotion" + product.getPromotion().getPromotionName());
+                    holder.txtPromotion.setText("Promotion: " + product.getPromotion().getPromotionName());
                     holder.txtPrice.setPaintFlags(holder.txtPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     Long price = product.getPrice() - product.getPrice()*product.getPromotion().getPromotion()/100;
-                    holder.txtSale.setText( price + "");
+                    holder.txtSale.setText(" " + price);
                 }
             }
         }
