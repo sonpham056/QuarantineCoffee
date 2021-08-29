@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="6dp"
-        android:background="#fff">
+        android:background="#F8E4E4">
 
 
         <ImageView
@@ -60,7 +60,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/img_del"
-            app:backgroundTint="#a1c9f1"
+            app:backgroundTint="#262A2E"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +75,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
             android:background="@drawable/img_edit"
-            app:backgroundTint="#a1c9f1"
+            app:backgroundTint="#262A2E"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

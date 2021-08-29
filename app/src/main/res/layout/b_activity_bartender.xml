@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.Bartender.BartenderActivity"
-    android:padding="10dp"
-    android:background="#CCE1F3"
+    android:padding="0dp"
+    android:background="#F8E4E4"
     android:id="@+id/bar_drawer_layout">
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/bar_navigationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#fff"
+        android:background="#F8F3F3"
         app:headerLayout="@layout/hearder_menu"
         app:itemTextColor="@color/black"
         app:menu="@menu/main_navigation" />
@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:layout_marginTop="60dp"
-        android:background="#CCE1F3"
+        android:background="#F8F6F6"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="-6dp">
 

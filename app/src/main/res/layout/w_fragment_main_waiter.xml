@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F8E4E4"
     tools:context=".activities.Waiter.MainWaiterFragment">
 
     <EditText
         android:id="@+id/txt_w_search_product"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
+        android:background="#F8E4E4"
         android:ems="10"
         android:hint="Type something to search"
         android:inputType="textPersonName" />
@@ -19,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
+        android:background="#B43F51B5"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
@@ -56,6 +59,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_w_products"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:paddingLeft="10dp"
+        />
 
 </LinearLayout>

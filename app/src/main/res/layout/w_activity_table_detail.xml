@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
+    android:background="#F8E4E4"
     tools:context=".activities.Waiter.TableDetailActivity">
 
     <LinearLayout
@@ -18,7 +19,7 @@
         <Button
             android:id="@+id/btn_w_newlyadded_table_detail"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="61dp"
             android:layout_marginLeft="10dp"
             android:text="Newly added" />
 
@@ -31,7 +32,7 @@
         <Button
             android:id="@+id/btn_w_all_order_table_detail"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginRight="10dp"
             android:text="All" />
     </LinearLayout>
@@ -44,7 +45,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_w_list_order"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:background="#FFFFFF" />
     </LinearLayout>
 
 

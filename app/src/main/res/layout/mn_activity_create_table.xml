@@ -5,29 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F8E4E4"
     tools:context=".activities.Manager.CreateTableActivity">
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
             android:layout_weight="1"
+            android:textStyle="bold"
+            android:background="#F8E4E4"
             android:text="Name" />
 
         <EditText
             android:id="@+id/txt_mn_create_table"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="63dp"
             android:layout_weight="1"
+            android:background="#F8F8F8"
             android:ems="10"
             android:inputType="textPersonName" />
     </LinearLayout>

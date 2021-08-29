@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.Manager.ListProductActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+    android:background="#F8E4E4">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,10 +16,10 @@
         <EditText
             android:id="@+id/txt_mn_Search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Search"
             android:textSize="30sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
     </LinearLayout>
 
@@ -28,7 +30,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_mn_Products"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:padding="10dp"
+            android:background="#FFFEFE"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </LinearLayout>

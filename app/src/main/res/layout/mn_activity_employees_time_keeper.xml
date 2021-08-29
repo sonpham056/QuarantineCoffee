@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".activities.Manager.EmployeesTimeKeeperActivity"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#F8E4E4">
 
     <Spinner
         android:id="@+id/spinner_mn_name_employees_time"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#B43F51B5"
         android:layout_weight=".1"/>
 
     <EditText
@@ -25,6 +27,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:hint="Choose a month"
+        android:background="#FAF9F9"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="" />
@@ -42,6 +45,7 @@
         android:layout_weight=".1"
         android:textSize="20sp"
         android:text=""
+        android:background="#FAF9F9"
         android:hint="This is where the total of worked hours go"/>
 
     <Button

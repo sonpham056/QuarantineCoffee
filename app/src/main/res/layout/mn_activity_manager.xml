@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.Manager.ManagerActivity"
     android:id="@+id/manager_drawer"
+    android:background="#F8E4E4"
     android:orientation="vertical">
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/manager_navigation"

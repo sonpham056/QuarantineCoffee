@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".activities.Manager.ShowProductInStatisticalActivity">
+    tools:context=".activities.Manager.ShowProductInStatisticalActivity"
+    android:background="#F8E4E4">
 
     <ListView
         android:id="@+id/listview_mn_show_product_statistical"

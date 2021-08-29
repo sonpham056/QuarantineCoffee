@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="#F8E4E4"
         android:orientation="vertical"
         android:padding="6dp">
 
@@ -90,7 +90,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
             android:background="@drawable/ic_checkbox"
-            app:backgroundTint="#a1c9f1"
+            app:backgroundTint="#191C1E"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

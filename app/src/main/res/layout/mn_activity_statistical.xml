@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
+    android:background="#F8E4E4"
     tools:context=".activities.Manager.StatisticalActivity">
 
     <LinearLayout
@@ -14,32 +15,35 @@
         android:layout_weight=".1"
         android:weightSum="1"
         android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp">
+
         <EditText
             android:id="@+id/txt_mn_statistical_date_from"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Choose 'FROM' date"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_weight=".5"
+            android:background="#F8F8F8"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:layout_weight=".5"
-            android:layout_marginRight="5dp"/>
+            android:hint="Choose 'FROM' date"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/txt_mn_statistical_date_to"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Choose 'TO' date"
+            android:layout_height="73dp"
+            android:layout_weight=".5"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:layout_weight=".5"/>
+            android:hint="Choose 'TO' date"
+            android:background="#F8F8F8"
+            android:inputType="textPersonName" />
 
     </LinearLayout>
 
@@ -47,6 +51,7 @@
         android:id="@+id/recycler_mn_statistical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingLeft="10dp"
         android:layout_weight=".8" />
 
     <LinearLayout
@@ -61,7 +66,8 @@
             android:layout_height="wrap_content"
             android:hint="Choose dates to see the result"
             android:textColor="@android:color/holo_red_light"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="#F8F8F8"/>
 
         <LinearLayout
             android:layout_width="match_parent"

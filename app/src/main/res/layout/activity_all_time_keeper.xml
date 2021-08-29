@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F8E4E4"
     tools:context=".activities.TimeKeeperActivity">
 
     <LinearLayout
@@ -16,6 +17,7 @@
             android:id="@+id/img_watch"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:background="#fff"
             android:src="@drawable/ic_watch" />
 
         <LinearLayout
@@ -62,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:layout_gravity="top"
+        android:background="#fff"
         android:layout_marginTop="20dp" />
 
 </LinearLayout>

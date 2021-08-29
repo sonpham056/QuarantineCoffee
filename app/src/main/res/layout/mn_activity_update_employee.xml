@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8E4E4"
     tools:context=".activities.Manager.CreateEmployeeActivity">
 
     <LinearLayout
@@ -32,11 +33,13 @@
             <EditText
                 android:id="@+id/txt_mn_username_update"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="69dp"
                 android:layout_weight=".8"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="20sp"
+                android:background="#F8F8F8"
+
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
@@ -58,12 +61,14 @@
             <EditText
                 android:id="@+id/txt_mn_fullname_update"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="67dp"
                 android:layout_weight=".8"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:textSize="20sp"
+                android:background="#F8F8F8"
+
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
@@ -85,8 +90,9 @@
             <EditText
                 android:id="@+id/txt_mn_role_update"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="67dp"
                 android:layout_weight=".8"
+                android:background="#F8F8F8"
                 android:ems="10"
                 android:inputType="none|numberDecimal"
                 android:minHeight="48dp"
@@ -113,7 +119,7 @@
                 android:layout_weight=".5"
                 android:layout_gravity="center_vertical"
                 android:textSize="30sp"
-                android:background="#D9FF00"
+                android:background="#E9ECD9"
                 android:text="Gender? Is that male?" />
 
         </LinearLayout>

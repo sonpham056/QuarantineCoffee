@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="50dp"
+    android:background="#F8E4E4">
 
     <TextView
         android:id="@+id/promotionName"
@@ -30,8 +31,8 @@
 
     <ImageView
         android:id="@+id/btn_mn_addPromotionInProduct"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="5dp"
         android:src="@drawable/img_add"
         app:layout_constraintEnd_toStartOf="@+id/btn_mn_deletePromotion"
@@ -40,8 +41,8 @@
 
     <ImageView
         android:id="@+id/btn_mn_deletePromotion"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="5dp"
         android:src="@drawable/img_del"
         app:layout_constraintEnd_toEndOf="parent"

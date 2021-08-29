@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F8E4E4"
     tools:context=".activities.Manager.CreateProductTypeActivity">
 
     <LinearLayout
@@ -19,16 +20,19 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="50dp"
+            android:textStyle="bold"
             android:layout_weight="1"
             android:text="Name" />
 
         <EditText
             android:id="@+id/txt_mn_create_productType"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="63dp"
             android:layout_weight="1"
+            android:background="#FAF9F9"
             android:ems="10"
             android:inputType="textPersonName" />
     </LinearLayout>
