@@ -11,7 +11,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.microwaveteam.quarantinecoffee.R;
-import com.microwaveteam.quarantinecoffee.activities.Waiter.WaiterActivity;
 
 public class NavigationDrawer implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -40,8 +39,10 @@ public class NavigationDrawer implements NavigationView.OnNavigationItemSelected
                 //TODO: excuse me
                 break;
             case R.id.help_navItem_change_profile:
+                break;
                 //TODO: excuse me
             case R.id.help_navItem_timekeeper:
+                break;
                 //TODO: excuse me
         }
         drawerLayout.closeDrawer(GravityCompat.START);

@@ -128,6 +128,7 @@ public class WaiterActivity extends AppCompatActivity implements NavigationView.
                 Intent timeKeeperIntent = new Intent(this, TimeKeeperActivity.class);
                 timeKeeperIntent.putExtra("userNameInTimeKeeper",userName);
                 startActivity(timeKeeperIntent);
+                break;
             case R.id.help_navItem_change_profile:
                 Intent intent2 = new Intent(this, change_profile.class);
                 intent2.putExtra("userNameInChangeProfile",userName);
